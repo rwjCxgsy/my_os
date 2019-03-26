@@ -11,21 +11,20 @@ declare module 'query-string'
 declare module 'china-division/*.json'
 declare module 'react-svg'
 declare module 'jsonp'
+// declare module 'redux-logger'
+// declare module 'react-redux'
+declare module 'nprogress'
 // declare const AMap: any
 // declare const xhr: any
 
 
-// declare interface IMapData {
-//     position: number[]
-//     icon: string
-//     offset?: any
-//     title: string
-//     img?: string
-//     description?: string,
-//     date: string,
-//     address: string,
-//     addressCode: number
-// }
+declare interface Ilauncher {
+    type: 1 | 2 | 3 | 4,
+    id: string,
+    icon: string,
+    text: string,
+    launcher: string
+}
 
 
 // declare module 'react-onsenui'
