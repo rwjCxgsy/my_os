@@ -12,7 +12,7 @@ interface Iprops {
 let txt: string = ''
 export default class Computer extends Component<any> {
   state: any = {
-    result: number
+    result: '0'
   }
   render() {
     const {title, onClose} = this.props
@@ -70,6 +70,7 @@ export default class Computer extends Component<any> {
   }
 
   computerMath (value: string, sign?: string) {
+    console.log(value, txt)
     const {length} = txt
     const last = txt.substr(length - 1)
     if (length === 0 && sign) {
@@ -87,9 +88,9 @@ export default class Computer extends Component<any> {
   computerResult () {
     console.log(txt)
     var result = eval(txt)
-    txt = result
+    txt = result + ''
     this.setState({
-      result
+      result: txt
     })
   }
 }

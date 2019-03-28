@@ -61,7 +61,7 @@ class App extends Component<Iporps, Istate> {
     const {launcherList} = this.props
     const {pointX, pointY, width, height, enumShow} = this.state
     return (
-      <div className={styles.App} onMouseMove={this.handleMove.bind(this)} onMouseUp={this.mouseUpHandle.bind(this)}>
+      <div className={styles.App}>
         <div className={styles.header}>
           <div className={styles['header-left']}>
             <div className={styles.logo}>
