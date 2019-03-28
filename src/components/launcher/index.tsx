@@ -2,24 +2,23 @@ import React from 'react';
 import styles from './index.module.less';
 import {connect} from 'react-redux'
 
-class Launcher extends React.Component<Ilauncher> {
+
+class Launcher extends React.Component<any> {
     render () {
-        const {type, id, icon, text, launcher} = this.props
-        console.log(icon)
-        new Image().src = icon
+        const {type, id, icon, title, launcher, onOpen} = this.props
         return (
             <div className={styles.launcher}>
-                <img className={styles.icon} src={icon}/>
-                <span>{text}</span>
+                <img className={styles.icon} onClick={this.open.bind(this)} src={icon}/>
+                <span onClick={this.open.bind(this)}>{title}</span>
             </div>
         )
     }
+
+    open () {
+        const {onOpen} = this.props
+        console.log('onOpen')
+        onOpen()
+    }
 }
 
-export default connect((state) => state, (dispatch => {
-    return {
-        open () {
-            dispatch({type: 'open_menu'})
-        }
-    }
-}))(Launcher)
+export default connect()(Launcher)

@@ -61,8 +61,8 @@ module.exports = override(
     addLessLoader({
         javascriptEnabled: true,
         modifyVars: { '@primary-color': '#1DA57A' },
-        strictMath: true,
-        noIeCompat: true,
+        // strictMath: true,
+        // noIeCompat: true,
         localIdentName: '[local]--[hash:base64:5]' // if you use CSS Modules, and custom `localIdentName`, default is '[local]--[hash:base64:5]'.
     }),
     addPostcssPlugins([

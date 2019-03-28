@@ -22,8 +22,10 @@ declare interface Ilauncher {
     type: 1 | 2 | 3 | 4,
     id: string,
     icon: string,
-    text: string,
-    launcher: string
+    title: string,
+    launcher: string,
+    app?: Component,
+    onOpen?: (launcher: Ilauncher) => void
 }
 
 

@@ -3,11 +3,17 @@ import React, { Component, ReactEventHandler, MouseEvent } from 'react';
 
 import {connect} from 'react-redux'
 import styles from './App.module.less';
-console.log(styles)
+import Enum from '../components/enum'
 
 import NProgress from 'nprogress'
 import Launcher from '../components/launcher/index'
 import Clock from '../components/clock';
+import Computer from '../app/computer';
+
+import {render} from 'react-dom'
+
+import {message, Button} from 'antd'
+
 
 function fullScreen (): void {
   if (!(document as any).webkitIsFullScreen) {
@@ -26,11 +32,16 @@ interface Istate {
   pointY: number,
   width: number,
   height: number,
-  isFocus: boolean
+  isFocus: boolean,
+  enumShow: boolean,
 }
 interface Iporps {
   launcherList: Ilauncher[]
 }
+
+
+const runApps: any = {}
+
 class App extends Component<Iporps, Istate> {
 
   state: Istate = {
@@ -38,7 +49,8 @@ class App extends Component<Iporps, Istate> {
     pointY: 40,
     width: 0,
     height: 0,
-    isFocus: false
+    isFocus: false,
+    enumShow: false,
   }
 
   constructor(props: Iporps) {
@@ -47,9 +59,9 @@ class App extends Component<Iporps, Istate> {
   
   render() {
     const {launcherList} = this.props
-    const {pointX, pointY, width, height} = this.state
+    const {pointX, pointY, width, height, enumShow} = this.state
     return (
-      <div className={styles.App}  onMouseMove={this.handleMove.bind(this)} onMouseUp={this.mouseUpHandle.bind(this)}>
+      <div className={styles.App} onMouseMove={this.handleMove.bind(this)} onMouseUp={this.mouseUpHandle.bind(this)}>
         <div className={styles.header}>
           <div className={styles['header-left']}>
             <div className={styles.logo}>
@@ -76,10 +88,14 @@ class App extends Component<Iporps, Istate> {
             left: pointX + 'px',
             top: pointY + 'px'
           }} />
+          <Enum point={{pointX, pointY}} style={{
+            left: pointX + 'px',
+            top: pointY + 'px'
+          }} show={enumShow}/>
           {
-            launcherList.map((v, i) => {
+            launcherList.map((v: Ilauncher, i) => {
               return (
-                <Launcher key={i} {...v}/>
+                <Launcher key={i} {...v} onOpen={this.openLauncher.bind(this, v)}/>
               )
             })
           }
@@ -88,37 +104,58 @@ class App extends Component<Iporps, Istate> {
     )
   }
 
+  openLauncher (launcher: Ilauncher): void {
+    if (!launcher.app) {
+      message.error(`${launcher.title}已卸载`)
+      return
+    }
+    
+    if (runApps[launcher.id]) {
+      message.info('运行中...');
+      return
+    }
+    const app: HTMLElement = document.createElement('div')
+    app.setAttribute('id', launcher.id)
+    runApps[launcher.id] = app
+    render(<launcher.app title={launcher.title} onClose={() => {
+      app.remove()
+      delete runApps[launcher.id]
+    }}/>, app)
+    document.body.append(app)
+  }
+
   handleDown = (e: MouseEvent) : void => {
     console.log('鼠标下')
     const {pageX, pageY} = e
-    this.setState({
-      ...this.state,
-      pointX: pageX,
-      pointY: pageY,
-      isFocus: true
-    })
+    // this.setState({
+    //   ...this.state,
+    //   pointX: pageX,
+    //   pointY: pageY,
+    //   isFocus: true,
+    //   enumShow: false
+    // })
   }
 
   handleMove = (e: MouseEvent) : void=> {
-    const {pointX, pointY, isFocus} = this.state
+    const {isFocus} = this.state
     if (!isFocus) {
       return 
     }
-    const {pageX, pageY} = e
+    let {pointX, pointY} = this.state
+    let {pageX, pageY} = e
     const width = Math.abs(pageX - pointX)
     const height = Math.abs(pageY - pointY)
-    let _pointY = pointY
-    let _pointX = pointX
     if (pageX < pointX) {
-      _pointX = pageX
+      [pointX, pageX] = [pageX, pointX]
     }
     if (pageY < pointY) {
-      _pointY = pageY
+      [pointY, pageY] = [pageY, pointY]
     }
+    console.log(width, height)
     this.setState({
       ...this.state,
-      pointX: _pointX,
-      pointY: _pointY,
+      pointX,
+      pointY,
       width,
       height
     })
@@ -141,12 +178,17 @@ class App extends Component<Iporps, Istate> {
   componentDidUpdate () {
     NProgress.done()
   }
-  componentWillMount(){
+  componentWillMount() {
     document.oncontextmenu = (e: any) :any => {
       e.preventDefault()
       // const target = e.target
-      // const {pageX, pageY} = e
-      // console.log(e)
+      const {pageX, pageY} = e
+      this.setState({
+        ...this.state,
+        pointX: pageX,
+        pointY: pageY,
+        enumShow: true
+      })
     }
   }
 }
