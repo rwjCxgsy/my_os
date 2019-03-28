@@ -14,6 +14,7 @@ import {render} from 'react-dom'
 
 import {message, Button} from 'antd'
 
+import Browser from '../app/browser'
 
 function fullScreen (): void {
   if (!(document as any).webkitIsFullScreen) {
@@ -67,7 +68,16 @@ class App extends Component<Iporps, Istate> {
             <div className={styles.logo}>
               <img src={require("../assets/windows.png")} />              
             </div>
-            <div className={styles.ie}>
+            <div className={styles.ie} onDoubleClick={() => {
+              this.openLauncher({
+                type: 1,
+                id: '99',
+                icon: '',
+                title: '浏览器',
+                launcher: '',
+                app: Browser,
+              })
+            }}>
               <img src={require("../assets/ie.png")}/>              
             </div>
             <div className={styles.holder}>

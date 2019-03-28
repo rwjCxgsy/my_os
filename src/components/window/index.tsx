@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './index.module.less';
 import {addDocumentMoveEvent, addDocumentUpEvent, removeDocumentMoveEvent, removeDocumentUpEvent} from '../../utils'
-
+import classname from 'classnames'
 interface Istate {
     isFullScreen: boolean
 }
@@ -55,8 +55,15 @@ export default class Window extends Component<Iprops, Istate> {
                         </svg>
                     </div>
                 </div>
-                <div>
-                    {this.props.children}
+                <div className={styles.content}>
+                    <div className={styles['ohter']}>
+                        <div className={classname([styles['content-left'], styles['scalc']])}/>
+                        <div className={styles.main}>
+                            {this.props.children}                        
+                        </div>
+                        <div className={classname([styles['content-right'], styles['scalc']])} />
+                    </div>
+                    <div className={classname([styles['content-bottom'], styles['scalc']])} />
                 </div>
             </div>
         )
