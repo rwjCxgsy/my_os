@@ -12,13 +12,21 @@ interface Iprops {
 }
 
 
-let isDown: boolean = false
-let pointX: number = 0
-let pointY: number = 0
-let lastLeft = 0
-let lastTop = 0
-let windows: HTMLElement = document.createElement('div')
+// let isDown: boolean = false
+// let pointX: number = 0
+// let pointY: number = 0
+// let lastLeft = 0
+// let lastTop = 0
+// let windows: HTMLElement = document.createElement('div')
 export default class Window extends Component<Iprops, Istate> {
+    raletive: any = {
+        isDown: false,
+        pointX: 0,
+        pointY: 0,
+        lastLeft: 0,
+        lastTop: 0,
+        windows: document.createElement('div')
+    }
     state: Istate = {
         isFullScreen: false
     }
@@ -29,7 +37,7 @@ export default class Window extends Component<Iprops, Istate> {
         return (
             <div className={styles.window} ref={e => {
                 if (e) {
-                    windows = e                    
+                    this.raletive.windows = e                    
                 }
             }}>
                 <div className={styles.header}
@@ -71,13 +79,13 @@ export default class Window extends Component<Iprops, Istate> {
     mouseDownHandle = (e: any): void => {
         console.log(e)
         const {pageX, pageY} = e
-        pointX = pageX,
-        pointY = pageY
-        isDown = true
+        this.raletive.pointX = pageX,
+        this.raletive.pointY = pageY
+        this.raletive.isDown = true
     }
     componentDidMount () {
         addDocumentMoveEvent((e: MouseEvent) => {
-            if (!isDown) return
+            if (!this.raletive.isDown) return
             console.log(e)
             const {pageX, pageY} = e
             // let marginLeft: any = windows.style.marginLeft
@@ -89,24 +97,23 @@ export default class Window extends Component<Iprops, Istate> {
             //     marginTop = parseInt(marginTop.substring(0, marginTop.length - 2)) || 0
             // }
             // console.log(marginTop, marginLeft)
-            const left = pageX - pointX
-            const top = pageY - pointY
-            windows.style.cssText = `margin-left: ${lastLeft + left}px;margin-top: ${lastTop + top}px`
+            const left = pageX - this.raletive.pointX
+            const top = pageY - this.raletive.pointY
+            this.raletive.windows.style.cssText = `margin-left: ${this.raletive.lastLeft + left}px;margin-top: ${this.raletive.lastTop + top}px`
         })
         addDocumentUpEvent((e: MouseEvent) => {
             // const {pageX, pageY} = e
-            let marginLeft: any = windows.style.marginLeft
-            let marginTop: any = windows.style.marginTop
+            let marginLeft: any = this.raletive.windows.style.marginLeft
+            let marginTop: any = this.raletive.windows.style.marginTop
             if (marginLeft) {
                 marginLeft = parseInt(marginLeft.substring(0, marginLeft.length - 2)) || 0
             }
             if (marginTop) {
                 marginTop = parseInt(marginTop.substring(0, marginTop.length - 2)) || 0
             }
-            lastLeft = marginLeft,
-            lastTop = marginTop
-            isDown = false
-            console.log(pointX, pointY)
+            this.raletive.lastLeft = marginLeft,
+            this.raletive.lastTop = marginTop
+            this.raletive.isDown = false
         })
     }
 
