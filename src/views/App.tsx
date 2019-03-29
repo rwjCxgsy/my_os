@@ -8,13 +8,13 @@ import Enum from '../components/enum'
 import NProgress from 'nprogress'
 import Launcher from '../components/launcher/index'
 import Clock from '../components/clock';
-import Computer from '../app/computer';
 
 import {render} from 'react-dom'
 
-import {message, Button} from 'antd'
+import {message} from 'antd'
 
-import Browser from '../app/browser'
+import {getAppList} from './appList'
+
 
 function fullScreen (): void {
   if (!(document as any).webkitIsFullScreen) {
@@ -33,8 +33,7 @@ interface Istate {
   pointY: number,
   width: number,
   height: number,
-  isFocus: boolean,
-  enumShow: boolean,
+  isFocus: boolean
 }
 interface Iporps {
   launcherList: Ilauncher[]
@@ -43,6 +42,10 @@ interface Iporps {
 
 const runApps: any = {}
 
+let divEmun: HTMLElement | null  = null
+
+let enumShow: boolean = false
+
 class App extends Component<Iporps, Istate> {
 
   state: Istate = {
@@ -50,8 +53,7 @@ class App extends Component<Iporps, Istate> {
     pointY: 40,
     width: 0,
     height: 0,
-    isFocus: false,
-    enumShow: false,
+    isFocus: false
   }
 
   constructor(props: Iporps) {
@@ -59,29 +61,13 @@ class App extends Component<Iporps, Istate> {
   }
   
   render() {
-    const {launcherList} = this.props
-    const {pointX, pointY, width, height, enumShow} = this.state
+    const {pointX, pointY, width, height} = this.state
     return (
       <div className={styles.App}>
         <div className={styles.header}>
           <div className={styles['header-left']}>
             <div className={styles.logo}>
               <img src={require("../assets/windows.png")} />              
-            </div>
-            <div className={styles.ie} onDoubleClick={() => {
-              this.openLauncher({
-                type: 1,
-                id: '99',
-                icon: '',
-                title: '浏览器',
-                launcher: '',
-                app: Browser,
-              })
-            }}>
-              <img src={require("../assets/ie.png")}/>              
-            </div>
-            <div className={styles.holder}>
-              <img src={require("../assets/icon/imageres.dll(1023).ico")}/>              
             </div>
           </div>
           <div className={styles['header-right']}>
@@ -92,18 +78,14 @@ class App extends Component<Iporps, Istate> {
           </div>
         </div>
         <div className={styles.content} onMouseDown={this.handleDown.bind(this)}>
-          <div className={styles.mask} style={{
+          {/* <div className={styles.mask} style={{
             width: width + 'px',
             height: height + 'px',
             left: pointX + 'px',
             top: pointY + 'px'
-          }} />
-          <Enum point={{pointX, pointY}} style={{
-            left: pointX + 'px',
-            top: pointY + 'px'
-          }} show={enumShow}/>
+          }} /> */}
           {
-            launcherList.map((v: Ilauncher, i) => {
+            getAppList().map((v: Ilauncher, i) => {
               return (
                 <Launcher key={i} {...v} onOpen={this.openLauncher.bind(this, v)}/>
               )
@@ -116,7 +98,7 @@ class App extends Component<Iporps, Istate> {
 
   openLauncher (launcher: Ilauncher): void {
     if (!launcher.app) {
-      message.error(`${launcher.title}已卸载`)
+      message.error(`${launcher.title}未安装`)
       return
     }
     
@@ -135,8 +117,13 @@ class App extends Component<Iporps, Istate> {
   }
 
   handleDown = (e: MouseEvent) : void => {
+    if (divEmun) {
+      divEmun.remove()
+      divEmun = null
+    }
     console.log('鼠标下')
     const {pageX, pageY} = e
+    enumShow: false
     // this.setState({
     //   ...this.state,
     //   pointX: pageX,
@@ -191,14 +178,24 @@ class App extends Component<Iporps, Istate> {
   componentWillMount() {
     document.oncontextmenu = (e: any) :any => {
       e.preventDefault()
+      if (divEmun) {
+        return
+      }
       // const target = e.target
       const {pageX, pageY} = e
-      this.setState({
-        ...this.state,
-        pointX: pageX,
-        pointY: pageY,
-        enumShow: true
-      })
+      divEmun! = document.createElement('div')
+      render(
+          <Enum style={{
+            left: pageX + 'px',
+            top: pageY + 'px'
+          }} show={true}
+            eunmClick={() => {
+              divEmun!.remove()
+            }}
+          />,
+          divEmun
+      )
+      document.body.append(divEmun)
     }
   }
 }

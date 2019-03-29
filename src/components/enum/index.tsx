@@ -8,8 +8,8 @@ type Point = {
 
 interface Iprops {
     show: boolean,
-    point: Point,
-    style: object
+    style: object,
+    eunmClick: () => void
 }
 
 const enumList = [
@@ -25,7 +25,17 @@ const enumList = [
     text: '新建',
     event () {
       console.log('新建')
-    }
+    },
+    children: [
+      {
+        icon: '#icon-xinzeng1',
+        text: '文件夹',
+      },
+      {
+        icon: '#icon-xinzeng1',
+        text: '文件',
+      }
+    ]
   },
   {
     icon: '&#xe603;',
@@ -59,7 +69,7 @@ const enumList = [
 
 export default class Eeum extends Component<Iprops> {
   render() {
-    const {show, style} = this.props
+    const {show, style, eunmClick} = this.props
     return (
       <div>
           {
@@ -67,11 +77,30 @@ export default class Eeum extends Component<Iprops> {
                 {
                   enumList.map((v, i) => {
                     return (
-                      <div onClick={v.event} key={i}>
+                      <div onClick={eunmClick} key={i}>
                         <svg className="icon" aria-hidden="true">
                           <use xlinkHref={v.icon} />
                         </svg>
                         <span>{v.text}</span>
+                        {
+                          v.children ?
+                          (
+                            <ul>
+                              {
+                                v.children.map(v => {
+                                  return (
+                                    <li>
+                                      <svg className="icon" aria-hidden="true">
+                                        <use xlinkHref={v.icon} />
+                                      </svg>
+                                      <span>{v.text}</span>
+                                    </li>
+                                  )
+                                })
+                              }
+                            </ul>
+                          ) : ''
+                        }
                       </div>                      
                     )
                   })

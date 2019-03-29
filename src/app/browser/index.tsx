@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './index.module.less'
 import Window from '../../components/window'
-import {Input} from "antd";
+import {Input, Button} from "antd";
 
 function IsURL(str_url: string){
   var strRegex = '^((https|http|ftp|rtsp|mms)?://)'
@@ -24,24 +24,29 @@ function IsURL(str_url: string){
 
 export default class Browser extends Component<any> {
   state = {
-    url: ''
+    url: 'http://www.baidu.com',
   }
   render() {
     const {url} = this.state
     return (
       <Window title="浏览器" onClose={this.props.onClose}>
-        <div>
-          <Input placeholder="输入网址" type='url' value={url} onChange={e => {
-            this.setState({
-              url: e.target.value
-            })
-            console.log('-----------', IsURL(url))
-          }}/>
-          {
-            IsURL(url)
-            ? <iframe src={url}/>
-            : ''
-          }
+        <div className={styles.warp}>
+          <div className={styles.header}>
+            <Input placeholder="输入网址" type='url' value={url} onChange={e => {
+              this.setState({
+                url: e.target.value
+              })
+              console.log('-----------', IsURL(url))
+            }}/>
+            <Button type="primary">搜索</Button>
+          </div>
+          <div className={styles.content}>
+            {
+              IsURL(url)
+              ? <iframe src={url}/>
+              : ''
+            }            
+          </div>
         </div>
       </Window>
     )

@@ -15,6 +15,7 @@ declare module 'classnames'
 // declare module 'redux-logger'
 // declare module 'react-redux'
 declare module 'nprogress'
+declare module 'xgplayer-react'
 // declare const AMap: any
 // declare const xhr: any
 
@@ -24,9 +25,7 @@ declare interface Ilauncher {
     id: string,
     icon: string,
     title: string,
-    launcher: string,
     app?: Component,
-    onOpen?: (launcher: Ilauncher) => void
 }
 
 

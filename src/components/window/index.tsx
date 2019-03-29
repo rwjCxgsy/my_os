@@ -18,6 +18,8 @@ interface Iprops {
 // let lastLeft = 0
 // let lastTop = 0
 // let windows: HTMLElement = document.createElement('div')
+
+let zIndex = 99
 export default class Window extends Component<Iprops, Istate> {
     raletive: any = {
         isDown: false,
@@ -77,7 +79,9 @@ export default class Window extends Component<Iprops, Istate> {
         )
     }
     mouseDownHandle = (e: any): void => {
-        console.log(e)
+        zIndex ++
+        console.log(zIndex)
+        this.raletive.windows.style.zIndex = zIndex
         const {pageX, pageY} = e
         this.raletive.pointX = pageX,
         this.raletive.pointY = pageY
@@ -99,7 +103,8 @@ export default class Window extends Component<Iprops, Istate> {
             // console.log(marginTop, marginLeft)
             const left = pageX - this.raletive.pointX
             const top = pageY - this.raletive.pointY
-            this.raletive.windows.style.cssText = `margin-left: ${this.raletive.lastLeft + left}px;margin-top: ${this.raletive.lastTop + top}px`
+            this.raletive.windows.style.marginLeft = `${this.raletive.lastLeft + left}px`
+            this.raletive.windows.style.marginTop = `${this.raletive.lastTop + top}px`
         })
         addDocumentUpEvent((e: MouseEvent) => {
             // const {pageX, pageY} = e
@@ -118,7 +123,7 @@ export default class Window extends Component<Iprops, Istate> {
     }
 
     componentWillUnmount () {
-        removeDocumentMoveEvent()
-        removeDocumentUpEvent()
+        // removeDocumentMoveEvent()
+        // removeDocumentUpEvent()
     }
 }
