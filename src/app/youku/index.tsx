@@ -72,31 +72,41 @@ export default class Youku extends Component<any> {
     })
   }
 
+  nextPlayVideo (tips: string, isError: boolean) {
+    const {url} = this.state
+    const current = videoList.find(v => url === v.url)
+    if (isError) {
+        message.error(tips)
+    } else {
+        message.warn(tips)
+    }
+    let nextVideo = videoList[0]
+    videoList.forEach((v, i, a) => {
+        if (v === current) {
+            if (a[i+1]) {
+                nextVideo = a[i+1]
+            } else {
+                nextVideo = a[0]
+            }
+        }
+    })
+    setTimeout(() => {
+        this.setState({
+            url: nextVideo.url
+        })
+    }, 1000)
+  }
+
   componentDidMount () {
     Player!.addEventListener('loadeddata', () => {
         console.log('加载成功')
         Player!.play()
     })
+    Player!.addEventListener('ended', () => {
+        this.nextPlayVideo('该视频已播放完毕，即将播放下一个', false)
+    })
     Player!.addEventListener("error", () => {
-        const {url} = this.state
-        const result = videoList.find(v => url === v.url)
-        message.error(`${result!.title}已失效, 1s后我们即将播放下一个视频！`)
-        let nextVideo = videoList[0]
-        videoList.forEach((v, i, a) => {
-            if (v === result) {
-                if (a[i+1]) {
-                    nextVideo = a[i+1]
-                } else {
-                    nextVideo = a[0]
-                }
-            }
-        })
-        console.log(nextVideo)
-        setTimeout(() => {
-            this.setState({
-                url: nextVideo.url
-            })
-        }, 1000)
+        this.nextPlayVideo('该视频已失效，即将播放下一个', true)
     })
   }
 
