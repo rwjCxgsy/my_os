@@ -43,7 +43,7 @@ export default class Browser extends Component<any> {
           <div className={styles.content}>
             {
               IsURL(url)
-              ? <iframe src={url}/>
+              ? <strong>这是一个内嵌iframe</strong>
               : ''
             }            
           </div>
