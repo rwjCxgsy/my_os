@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import styles from './index.module.less'
 import Window from '../../components/window'
 import classnames from 'classnames'
-import Xgplayer from 'xgplayer-react';
-console.log(styles)
+// import Xgplayer from 'xgplayer-react';
+import {message} from 'antd'
 
-let Player: any = null
+let Player: HTMLVideoElement | null = null
 
 
 const videoList = [
@@ -16,6 +16,10 @@ const videoList = [
     {
         url: 'https://vdn1.vzuu.com/SD/b5fc7060-4e9d-11e9-8db6-0a580a449c44.mp4?disable_local_cache=1&bu=com&expiration=1579850414&auth_key=1553850414-0-0-14e757956416c5ef1fecf41515d11dc0&f=mp4&v=hw',
         title: '海洋里到底有什么可怕的东西？'
+    },
+    {
+        url: 'http://hc.yinyuetai.com/uploads/videos/common/BE600169CBBFFACE8BC6383ED22133C3.mp4?sc=8358efeab6ff2fb1&br=781&vid=3368599&aid=43925&area=US&vst=0',
+        title: '【MV】Billie Eilish-bad guy '
     }
 ]
 
@@ -65,6 +69,34 @@ export default class Youku extends Component<any> {
   changeVideo (v: any) {
     this.setState({
         url: v.url
+    })
+  }
+
+  componentDidMount () {
+    Player!.addEventListener('loadeddata', () => {
+        console.log('加载成功')
+        Player!.play()
+    })
+    Player!.addEventListener("error", () => {
+        const {url} = this.state
+        const result = videoList.find(v => url === v.url)
+        message.error(`${result!.title}已失效, 1s后我们即将播放下一个视频！`)
+        let nextVideo = videoList[0]
+        videoList.forEach((v, i, a) => {
+            if (v === result) {
+                if (a[i+1]) {
+                    nextVideo = a[i+1]
+                } else {
+                    nextVideo = a[0]
+                }
+            }
+        })
+        console.log(nextVideo)
+        setTimeout(() => {
+            this.setState({
+                url: nextVideo.url
+            })
+        }, 1000)
     })
   }
 
