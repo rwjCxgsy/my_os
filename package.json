@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-scripts build",
+    "build": "yarn cli && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
