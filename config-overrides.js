@@ -48,6 +48,13 @@ function resolve(dir) {
 }
 const { override, useBabelRc, fixBabelImports, addPostcssPlugins, addLessLoader, addWebpackAlias, addTslintLoader } = require("customize-cra");
 
+
+const publicPath = () => config => {
+    config.output.publicPath = './'
+    return config
+}
+
+
 module.exports = override(
     useBabelRc(),
     addWebpackAlias({
@@ -81,4 +88,5 @@ module.exports = override(
         // }),
     ]),
     addTslintLoader(),
+    publicPath()
 );
