@@ -51,6 +51,7 @@ const { override, useBabelRc, fixBabelImports, addPostcssPlugins, addLessLoader,
 
 const publicPath = () => config => {
     config.output.publicPath = './'
+    config.output.path = path.resolve(__dirname, 'dist')
     return config
 }
 
