@@ -51,11 +51,11 @@ export default class Window extends Component<Iprops, Istate> {
                         </svg>
                         {
                             !isFullScreen ? (
-                                <svg className="icon" aria-hidden="true">
+                                <svg className="icon" aria-hidden="true" onClick={this.fullScreen.bind(this)}>
                                     <use xlinkHref="#icon-quanping" />
                                 </svg>                    
                             ) : (
-                                <svg className="icon" aria-hidden="true">
+                                <svg className="icon" aria-hidden="true" onClick={this.exitScreen.bind(this)}>
                                     <use xlinkHref="#icon-huanyuan" />
                                 </svg>                    
                             )
@@ -78,7 +78,40 @@ export default class Window extends Component<Iprops, Istate> {
             </div>
         )
     }
+
+    exitScreen (e: any): void {
+        e.stopPropagation()
+        console.log(this.raletive)
+        this.raletive.windows.style.left = '';
+        this.raletive.windows.style.top = '';
+        this.raletive.windows.style.width = ''
+        this.raletive.windows.style.height = ''
+        this.raletive.windows.style.marginLeft = `${this.raletive.lastLeft}px`
+        this.raletive.windows.style.marginTop = `${this.raletive.lastTop}px`
+        this.raletive.windows.style.transform = '';
+        this.setState({
+            isFullScreen: false
+        })
+    }
+
+    fullScreen (e: any): void {
+        e.stopPropagation()
+        this.raletive.windows.style.left = '0px';
+        this.raletive.windows.style.top = '40px';
+        this.raletive.windows.style.width = window.innerWidth + 'px'
+        this.raletive.windows.style.height = (window.innerHeight - 30) + 'px'
+        this.raletive.windows.style.marginLeft = '0px'
+        this.raletive.windows.style.marginTop = '0px'
+        this.raletive.windows.style.transform = 'translate(0, 0)';
+        this.setState({
+            isFullScreen: true
+        })
+    }
+
     mouseDownHandle = (e: any): void => {
+        if (this.state.isFullScreen) {
+            return 
+        }
         zIndex ++
         console.log(zIndex)
         this.raletive.windows.style.zIndex = zIndex
@@ -90,7 +123,6 @@ export default class Window extends Component<Iprops, Istate> {
     componentDidMount () {
         addDocumentMoveEvent((e: MouseEvent) => {
             if (!this.raletive.isDown) return
-            console.log(e)
             const {pageX, pageY} = e
             // let marginLeft: any = windows.style.marginLeft
             // let marginTop: any = windows.style.marginTop
@@ -116,6 +148,7 @@ export default class Window extends Component<Iprops, Istate> {
             if (marginTop) {
                 marginTop = parseInt(marginTop.substring(0, marginTop.length - 2)) || 0
             }
+            console.log(marginLeft, marginTop)
             this.raletive.lastLeft = marginLeft,
             this.raletive.lastTop = marginTop
             this.raletive.isDown = false
