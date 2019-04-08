@@ -2,6 +2,7 @@
 import Computer from '../app/computer'
 import Browser from '../app/browser'
 import Os from '../app/os'
+import Elevator from '../app/elevator'
 import YouKu from '../app/youku'
 let iocnList: Ilauncher[] = [
     {
@@ -18,13 +19,13 @@ let iocnList: Ilauncher[] = [
         title: '浏览器',
         app: Browser
     },
-    {
-        type: 1,
-        id: '3',
-        icon: '#icon-MAILBOX',
-        title: '邮件',
-        app: undefined
-    },
+    // {
+    //     type: 1,
+    //     id: '3',
+    //     icon: '#icon-MAILBOX',
+    //     title: '邮件',
+    //     app: undefined
+    // },
     {
         type: 2,
         id: '4',
@@ -32,26 +33,26 @@ let iocnList: Ilauncher[] = [
         title: '计算器',
         app: Computer
     },
-    {
-        type: 3,
-        id: '5',
-        icon: '#icon-wenjianjia',
-        title: '文件夹',
-        app: undefined
-    },
-    {
-        type: 4,
-        id: '6',
-        icon: '#icon-wenjian',
-        title: '文件',
-        app: undefined
-    },
+    // {
+    //     type: 3,
+    //     id: '5',
+    //     icon: '#icon-wenjianjia',
+    //     title: '文件夹',
+    //     app: undefined
+    // },
+    // {
+    //     type: 4,
+    //     id: '6',
+    //     icon: '#icon-wenjian',
+    //     title: '文件',
+    //     app: undefined
+    // },
     {
         type: 2,
         id: '7',
         icon: '#icon-xiami',
-        title: '虾米音乐',
-        app: undefined
+        title: '模拟电梯',
+        app: Elevator
     },
     {
         type: 2,

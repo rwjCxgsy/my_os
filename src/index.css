@@ -24,6 +24,9 @@ html {
   text-decoration: none;
   outline: none;
 }
+body ul {
+  margin-bottom: 0;
+}
 
 @font-face {
   font-family: 'iconfont';  /* project id 1111986 */

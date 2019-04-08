@@ -76,6 +76,7 @@ export default class Computer extends Component<any> {
     if (length === 0 && sign) {
       return 
     }
+    console.log(last)
     if (['*', '/', '-', '+', '.'].includes(last) && sign) {
       txt = txt.substring(0, length - 1) + value
     } else {
@@ -87,10 +88,14 @@ export default class Computer extends Component<any> {
   }
   computerResult () {
     console.log(txt)
-    var result = eval(txt)
-    txt = result + ''
-    this.setState({
-      result: txt
-    })
+    try {
+      const result = eval(txt)
+      txt = result + ''
+      this.setState({
+        result: txt
+      })   
+    } catch (error) {
+      console.log('计算不规范')
+    }
   }
 }
