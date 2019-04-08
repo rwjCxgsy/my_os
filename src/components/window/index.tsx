@@ -8,7 +8,9 @@ interface Istate {
 
 interface Iprops {
     title: string,
-    onClose: () => void
+    onClose: () => void,
+    onFullScreen?: () => void
+    onExitFullScreen?: () => void
 }
 
 
@@ -81,14 +83,16 @@ export default class Window extends Component<Iprops, Istate> {
 
     exitScreen (e: any): void {
         e.stopPropagation()
+        const {windows, lastLeft, lastTop} = this.raletive
         console.log(this.raletive)
-        this.raletive.windows.style.left = '';
-        this.raletive.windows.style.top = '';
-        this.raletive.windows.style.width = ''
-        this.raletive.windows.style.height = ''
-        this.raletive.windows.style.marginLeft = `${this.raletive.lastLeft}px`
-        this.raletive.windows.style.marginTop = `${this.raletive.lastTop}px`
-        this.raletive.windows.style.transform = '';
+        windows.style.left = '';
+        windows.style.top = '';
+        windows.style.width = ''
+        windows.style.height = ''
+        windows.style.marginLeft = `${lastLeft}px`
+        windows.style.marginTop = `${lastTop}px`
+        windows.style.transform = '';
+        windows.classList.remove('full')
         this.setState({
             isFullScreen: false
         })
@@ -96,16 +100,21 @@ export default class Window extends Component<Iprops, Istate> {
 
     fullScreen (e: any): void {
         e.stopPropagation()
-        this.raletive.windows.style.left = '0px';
-        this.raletive.windows.style.top = '40px';
-        this.raletive.windows.style.width = window.innerWidth + 'px'
-        this.raletive.windows.style.height = (window.innerHeight - 30) + 'px'
-        this.raletive.windows.style.marginLeft = '0px'
-        this.raletive.windows.style.marginTop = '0px'
-        this.raletive.windows.style.transform = 'translate(0, 0)';
+        const {windows} = this.raletive
+        windows.style.left = '0px';
+        windows.style.top = '40px';
+        windows.style.width = window.innerWidth + 'px'
+        windows.style.height = (window.innerHeight - 30) + 'px'
+        windows.style.marginLeft = '0px'
+        windows.style.marginTop = '0px'
+        windows.style.transform = 'translate(0, 0)';
+        console.log(windows.classList)
+        windows.classList.add('full')
         this.setState({
             isFullScreen: true
         })
+        const {onFullScreen = () => {}} = this.props
+        onFullScreen()
     }
 
     mouseDownHandle = (e: any): void => {

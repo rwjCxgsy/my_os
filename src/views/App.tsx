@@ -102,12 +102,12 @@ class App extends Component<Iporps, Istate> {
       return
     }
     
-    if (runApps[launcher.id]) {
+    if (runApps['appId_' + launcher.id]) {
       message.info('运行中...');
       return
     }
     const app: HTMLElement = document.createElement('div')
-    app.setAttribute('id', launcher.id)
+    app.setAttribute('id', 'appId_' + launcher.id)
     runApps[launcher.id] = app
     render(<launcher.app title={launcher.title} onClose={() => {
       app.remove()

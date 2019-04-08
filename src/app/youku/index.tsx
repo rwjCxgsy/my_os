@@ -4,7 +4,7 @@ import Window from '../../components/window'
 import classnames from 'classnames'
 // import Xgplayer from 'xgplayer-react';
 import {message} from 'antd'
-
+console.log(styles)
 let Player: HTMLVideoElement | null = null
 
 
@@ -26,22 +26,19 @@ const videoList = [
 export default class Youku extends Component<any> {
 
     state: any = {
-        // config: {
-        //     url: 'https://h5player.bytedance.com/video/mp4/xgplayer-demo-720p.mp4',
-        //     id: 'youku',
-        //     autoplay: true,
-        //     height: 600,
-        //     width: 800
-        // }
+        isFullScreen: false,
         url: ''
     }
 
   render() {
     const {title, onClose} = this.props
-    const {url} = this.state
+    const {url, isFullScreen} = this.state
     return (
-      <Window title={title} onClose={onClose}>
-        <div className={styles.youku}>
+      <Window title={title} onClose={onClose} onFullScreen={this.fullScreen.bind(this)}>
+        <div className={classnames({
+            [styles.youku]: true,
+            [styles.full]: isFullScreen
+        })}>
             <div className={styles.left}>
                 {/* <Xgplayer config={config} playerInit={(player: any) => {
                     Player = player
@@ -64,6 +61,13 @@ export default class Youku extends Component<any> {
         </div>
       </Window>
     )
+  }
+
+  fullScreen () {
+      this.setState({
+        ...this.state,
+        isFullScreen: true  
+      })
   }
 
   changeVideo (v: any) {
