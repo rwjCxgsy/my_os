@@ -18,7 +18,7 @@ export default class Computer extends Component<any> {
     const {title, onClose} = this.props
     return (
       <div>
-          <Window title={title} onClose={onClose}>
+          <Window title={title} onClose={onClose} isAbleFull={false}>
               <div className={styles.computer}>
                 <div className={styles.output}>
                   {this.state.result}

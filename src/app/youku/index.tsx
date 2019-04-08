@@ -66,7 +66,7 @@ export default class Youku extends Component<any> {
   fullScreen () {
       this.setState({
         ...this.state,
-        isFullScreen: true  
+        isFullScreen: true
       })
   }
 

@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import styles from './index.module.less';
 import {addDocumentMoveEvent, addDocumentUpEvent, removeDocumentMoveEvent, removeDocumentUpEvent} from '../../utils'
 import classname from 'classnames'
+import { message } from 'antd';
 interface Istate {
     isFullScreen: boolean
 }
 
 interface Iprops {
-    title: string,
-    onClose: () => void,
+    title: string
+    isAbleFull?: boolean
+    onClose: () => void
     onFullScreen?: () => void
     onExitFullScreen?: () => void
 }
@@ -100,6 +102,11 @@ export default class Window extends Component<Iprops, Istate> {
 
     fullScreen (e: any): void {
         e.stopPropagation()
+        const {isAbleFull = true} = this.props
+        if (!isAbleFull) {
+            message.info('该app不能全屏')
+            return 
+        }
         const {windows} = this.raletive
         windows.style.left = '0px';
         windows.style.top = '40px';
