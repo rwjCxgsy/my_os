@@ -87,7 +87,12 @@ class App extends Component<Iporps, Istate> {
       delete runApps[launcher.id]
     }}/>, app)
     document.body.append(app)
+    setTimeout(() => {
+      console.log('添加完成')
+      console.log(document.getElementById(`appId_${launcher.id}`))
+    }, 0)
   }
+
 }
 
 const mapState = (state: any) => {

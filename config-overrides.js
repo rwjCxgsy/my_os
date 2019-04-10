@@ -86,11 +86,11 @@ module.exports = override(
         require("postcss-write-svg")({utf8: false}), 
         // require("postcss-cssnext"), 
         require("postcss-px-to-viewport")({    
-            viewportWidth: 750,    
-            unitPrecision: 3,    
-            viewportUnit: 'vw',    
+            viewportWidth: 750,
+            unitPrecision: 3,
+            viewportUnit: 'vw',
             selectorBlackList: ['.ignore', '.hairlines', /antd-/, /am-/, /.*--material/],    
-            minPixelValue: 1,   
+            minPixelValue: 1,
             mediaQuery: false
         }),
     ]),

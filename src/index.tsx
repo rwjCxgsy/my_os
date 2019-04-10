@@ -10,6 +10,7 @@ import {Provider} from 'react-redux';
 
 const Store = createStore(reducers, {}, applyMiddleware(logger))
 
+
 ReactDOM.render(<Provider store={Store}><App /></Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
