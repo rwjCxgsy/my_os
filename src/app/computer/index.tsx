@@ -21,7 +21,7 @@ export default class Computer extends Component<any> {
           <Window title={title} onClose={onClose} isAbleFull={false}>
               <div className={styles.computer}>
                 <div className={styles.output}>
-                  {this.state.result}
+                  {this.state.result === '' ? '0' : this.state.result}
                 </div>
                 <div className={styles.input}>
                   <table>

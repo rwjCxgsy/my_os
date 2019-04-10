@@ -6,59 +6,59 @@ import Elevator from '../app/elevator'
 import YouKu from '../app/youku'
 let iocnList: Ilauncher[] = [
     {
-        type: 1,
-        id: '1',
-        icon: '#icon-ONLINEQUESTION',
-        title: '我的电脑',
-        app: Os
-    },
-    {
-        type: 1,
-        id: '2',
-        icon: '#icon-WORLD',
-        title: '浏览器',
-        app: Browser
-    },
-    // {
-    //     type: 1,
-    //     id: '3',
-    //     icon: '#icon-MAILBOX',
-    //     title: '邮件',
-    //     app: undefined
-    // },
-    {
         type: 2,
-        id: '4',
-        icon: '#icon-jisuanqi',
+        id: '1',
+        icon: '#icon-jisuanqi1',
         title: '计算器',
         app: Computer
     },
-    // {
-    //     type: 3,
-    //     id: '5',
-    //     icon: '#icon-wenjianjia',
-    //     title: '文件夹',
-    //     app: undefined
-    // },
-    // {
-    //     type: 4,
-    //     id: '6',
-    //     icon: '#icon-wenjian',
-    //     title: '文件',
-    //     app: undefined
-    // },
     {
         type: 2,
-        id: '7',
+        id: '2',
         icon: '#icon-xiami',
         title: '模拟电梯',
         app: Elevator
     },
     {
         type: 2,
-        id: '8',
+        id: '3',
         icon: '#icon-youku',
         title: '优酷',
+        app: YouKu
+    },
+    {
+        type: 2,
+        id: '4',
+        icon: '#icon-xinwennews',
+        title: '新闻',
+        app: YouKu
+    },
+    {
+        type: 2,
+        id: '5',
+        icon: '#icon-yinle',
+        title: '音乐',
+        app: YouKu
+    },
+    {
+        type: 2,
+        id: '6',
+        icon: '#icon-xiangji',
+        title: '相机',
+        app: YouKu
+    },
+    {
+        type: 2,
+        id: '7',
+        icon: '#icon-weixindenglu',
+        title: '微信',
+        app: YouKu
+    },
+    {
+        type: 2,
+        id: '7',
+        icon: '#icon-tianqi',
+        title: '天气',
         app: YouKu
     }
 ]

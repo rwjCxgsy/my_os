@@ -55,11 +55,17 @@ export default class Window extends Component<Iprops, Istate> {
                         </svg>
                         {
                             !isFullScreen ? (
-                                <svg className="icon" aria-hidden="true" onClick={this.fullScreen.bind(this)}>
+                                <svg className="icon" aria-hidden="true" onClick={e => {
+                                    e.stopPropagation()
+                                    this.fullScreen()
+                                }}>
                                     <use xlinkHref="#icon-quanping" />
                                 </svg>                    
                             ) : (
-                                <svg className="icon" aria-hidden="true" onClick={this.exitScreen.bind(this)}>
+                                <svg className="icon" aria-hidden="true" onClick={e => {
+                                    e.stopPropagation()
+                                    this.exitScreen()
+                                }}>
                                     <use xlinkHref="#icon-huanyuan" />
                                 </svg>                    
                             )
@@ -83,8 +89,7 @@ export default class Window extends Component<Iprops, Istate> {
         )
     }
 
-    exitScreen (e: any): void {
-        e.stopPropagation()
+    exitScreen (): void {
         const {windows, lastLeft, lastTop} = this.raletive
         console.log(this.raletive)
         windows.style.left = '';
@@ -100,8 +105,7 @@ export default class Window extends Component<Iprops, Istate> {
         })
     }
 
-    fullScreen (e: any): void {
-        e.stopPropagation()
+    fullScreen (): void {
         const {isAbleFull = true} = this.props
         if (!isAbleFull) {
             message.info('该app不能全屏')
@@ -137,6 +141,10 @@ export default class Window extends Component<Iprops, Istate> {
         this.raletive.isDown = true
     }
     componentDidMount () {
+        const {isAbleFull = true} = this.props
+        if (isAbleFull) {
+            this.fullScreen()
+        }        
         addDocumentMoveEvent((e: MouseEvent) => {
             if (!this.raletive.isDown) return
             const {pageX, pageY} = e
@@ -172,6 +180,7 @@ export default class Window extends Component<Iprops, Istate> {
     }
 
     componentWillUnmount () {
+
         // removeDocumentMoveEvent()
         // removeDocumentUpEvent()
     }

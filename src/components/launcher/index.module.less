@@ -1,28 +1,25 @@
 .launcher {
     width: 80px;
     max-height: 100px;
-    margin-top: 20px;
+    margin-bottom: 40px;
     display: inline-flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    border: 1px solid transparent;
+    // border: 1px solid transparent;
+    width: 20%;
     .icon {
-        width: 35px;
-        height: 35px;
+        display: block;
+        margin: 0 auto;
+        width: 70px;
+        height: 70px;
         transition: all 0.1s linear;
     }
     span {
         display: block;
         padding: 1px 0;
+        text-align: center;
         color: #fff;
-        font-size: 14px;
-    }
-    &:hover {
-        background-color: rgba(255,255,255, 0.05);
-        border: 1px solid rgba(255,255,255, 0.15);
-        cursor: pointer;
-        svg {
-            transform: scale(1.1);
-        }
+        margin-top: 4px;
+        font-size: 24px;
     }
 }

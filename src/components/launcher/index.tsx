@@ -8,10 +8,12 @@ class Launcher extends React.Component<any> {
         const {icon, title} = this.props
         return (
             <div className={styles.launcher} onDoubleClick={this.open.bind(this)}>
-                <svg className={classnames([styles.icon, 'icon'])} aria-hidden="true">
-                    <use xlinkHref={icon} />
-                </svg>
-                <span>{title}</span>
+                <div>
+                    <svg className={classnames([styles.icon, 'icon'])} aria-hidden="true">
+                        <use xlinkHref={icon} />
+                    </svg>
+                    <span>{title}</span>                    
+                </div>
             </div>
         )
     }
