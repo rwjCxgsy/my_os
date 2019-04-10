@@ -10,6 +10,7 @@ interface Iprops {
 
 
 let txt: string = ''
+let table: null | HTMLTableElement= null
 export default class Computer extends Component<any> {
   state: any = {
     result: '0'
@@ -20,11 +21,13 @@ export default class Computer extends Component<any> {
       <div>
           <Window title={title} onClose={onClose} isAbleFull={false}>
               <div className={styles.computer}>
-                <div className={styles.output}>
-                  {this.state.result === '' ? '0' : this.state.result}
+                <div className={styles.output} id="outputHeight">
+                 <p>{this.state.result === '' ? '0' : this.state.result}</p>
                 </div>
                 <div className={styles.input}>
-                  <table>
+                  <table ref={((e: HTMLTableElement) => {
+                    table = e
+                  })}>
                     <tbody>
                       <tr>
                         <td onClick={this.computerMath.bind(this, '/', 'sign')}>/</td>
@@ -97,5 +100,12 @@ export default class Computer extends Component<any> {
     } catch (error) {
       console.log('计算不规范')
     }
+  }
+  componentDidMount () {
+    setTimeout(() => {
+      const headerHeight = (document.getElementById('windowHeader') as HTMLDivElement).offsetHeight
+      const outputHeight = (document.getElementById('outputHeight') as HTMLDivElement).offsetHeight
+      table!.style.height = (window.innerHeight - headerHeight - outputHeight) + 'px'
+    }, 0)
   }
 }

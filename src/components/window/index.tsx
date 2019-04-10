@@ -3,6 +3,7 @@ import styles from './index.module.less';
 import {addDocumentMoveEvent, addDocumentUpEvent, removeDocumentMoveEvent, removeDocumentUpEvent} from '../../utils'
 import classname from 'classnames'
 import { message } from 'antd';
+import { Icon } from 'antd-mobile';
 interface Istate {
     isFullScreen: boolean
 }
@@ -41,16 +42,22 @@ export default class Window extends Component<Iprops, Istate> {
         const {title} = this.props
         console.log(isFullScreen)
         return (
-            <div className={styles.window} ref={e => {
+            <div className={classname([styles.window, 'zoomIn'])} ref={e => {
                 if (e) {
                     this.raletive.windows = e                    
                 }
             }}>
                 <div className={styles.header}
-                    onMouseDown={this.mouseDownHandle.bind(this)}>
-                    <span>{title}</span>
+                    id="windowHeader">
+                    <div className={styles.left}>
+                        <Icon size={'md'} type="left"/>
+                        <span>{title}</span>
+                    </div>
                     <div className={styles.right}>
                         <svg className="icon" aria-hidden="true">
+                            <use xlinkHref="#icon-windows" />
+                        </svg> 
+                        {/* <svg className="icon" aria-hidden="true">
                             <use xlinkHref="#icon-jianhao" />
                         </svg>
                         {
@@ -72,18 +79,13 @@ export default class Window extends Component<Iprops, Istate> {
                         }
                         <svg onClick={this.props.onClose} className="icon" aria-hidden="true">
                             <use xlinkHref="#icon-guanbi" />
-                        </svg>
+                        </svg> */}
                     </div>
                 </div>
                 <div className={styles.content}>
-                    <div className={styles['ohter']}>
-                        <div className={classname([styles['content-left'], styles['scalc']])}/>
-                        <div className={styles.main}>
-                            {this.props.children}                        
-                        </div>
-                        <div className={classname([styles['content-right'], styles['scalc']])} />
+                    <div className={styles.main}>
+                        {this.props.children}                        
                     </div>
-                    <div className={classname([styles['content-bottom'], styles['scalc']])} />
                 </div>
             </div>
         )
