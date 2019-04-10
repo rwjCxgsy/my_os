@@ -54,7 +54,7 @@ export default class Window extends Component<Iprops, Istate> {
                         <span>{title}</span>
                     </div>
                     <div className={styles.right}>
-                        <svg className="icon" aria-hidden="true">
+                        <svg className="icon" aria-hidden="true" onClick={this.props.onClose}>
                             <use xlinkHref="#icon-windows" />
                         </svg> 
                         {/* <svg className="icon" aria-hidden="true">

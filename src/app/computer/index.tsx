@@ -73,17 +73,25 @@ export default class Computer extends Component<any> {
   }
 
   computerMath (value: string, sign?: string) {
-    console.log(value, txt)
     const {length} = txt
     const last = txt.substr(length - 1)
     if (length === 0 && sign) {
       return 
     }
-    console.log(last)
+    const isNumber = (txt + value).split(/[/+*-]+/g)
+    console.log(isNumber)
+    const check = isNumber.every(v => {
+      if (isNaN(Number(v))) {
+        return false
+      }
+      return typeof Number(v) === 'number'
+    })
+    console.log(check)
+    if (!check) return false
     if (['*', '/', '-', '+', '.'].includes(last) && sign) {
       txt = txt.substring(0, length - 1) + value
     } else {
-      txt += value      
+      txt += value
     }
     this.setState({
       result: txt
@@ -98,7 +106,7 @@ export default class Computer extends Component<any> {
         result: txt
       })   
     } catch (error) {
-      console.log('计算不规范')
+      console.error('计算不规范')
     }
   }
   componentDidMount () {
