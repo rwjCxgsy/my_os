@@ -10,6 +10,7 @@ interface Iprops {
 
 
 let txt: string = ''
+let table: null | HTMLTableElement= null
 export default class Computer extends Component<any> {
   state: any = {
     result: '0'
@@ -20,11 +21,13 @@ export default class Computer extends Component<any> {
       <div>
           <Window title={title} onClose={onClose} isAbleFull={false}>
               <div className={styles.computer}>
-                <div className={styles.output}>
-                  {this.state.result}
+                <div className={styles.output} id="outputHeight">
+                 <p>{this.state.result === '' ? '0' : this.state.result}</p>
                 </div>
                 <div className={styles.input}>
-                  <table>
+                  <table ref={((e: HTMLTableElement) => {
+                    table = e
+                  })}>
                     <tbody>
                       <tr>
                         <td onClick={this.computerMath.bind(this, '/', 'sign')}>/</td>
@@ -70,24 +73,35 @@ export default class Computer extends Component<any> {
   }
 
   computerMath (value: string, sign?: string) {
-    console.log(value, txt)
     const {length} = txt
     const last = txt.substr(length - 1)
     if (length === 0 && sign) {
       return 
     }
-    console.log(last)
+    const isNumber = (txt + value).split(/[/+*-]+/g)
+    console.log(isNumber)
+    const check = isNumber.every(v => {
+      if (isNaN(Number(v))) {
+        return false
+      }
+      console.log(Number(v))
+      return typeof Number(v) === 'number'
+    })
+    if (!check) return false
     if (['*', '/', '-', '+', '.'].includes(last) && sign) {
       txt = txt.substring(0, length - 1) + value
     } else {
-      txt += value      
+      txt += value
     }
     this.setState({
       result: txt
     })
   }
   computerResult () {
-    console.log(txt)
+    if (!txt) return
+    txt = txt.replace(/(\d)+/g, (v: string): any => {
+      return Number(v) + ''
+    })
     try {
       const result = eval(txt)
       txt = result + ''
@@ -95,7 +109,14 @@ export default class Computer extends Component<any> {
         result: txt
       })   
     } catch (error) {
-      console.log('计算不规范')
+      console.error('计算不规范', error)
     }
+  }
+  componentDidMount () {
+    setTimeout(() => {
+      const headerHeight = (document.getElementById('windowHeader') as HTMLDivElement).offsetHeight
+      const outputHeight = (document.getElementById('outputHeight') as HTMLDivElement).offsetHeight
+      table!.style.height = (window.innerHeight - headerHeight - outputHeight) + 'px'
+    }, 0)
   }
 }

@@ -3,6 +3,7 @@ import styles from './index.module.less';
 import {addDocumentMoveEvent, addDocumentUpEvent, removeDocumentMoveEvent, removeDocumentUpEvent} from '../../utils'
 import classname from 'classnames'
 import { message } from 'antd';
+import { Icon } from 'antd-mobile';
 interface Istate {
     isFullScreen: boolean
 }
@@ -41,50 +42,56 @@ export default class Window extends Component<Iprops, Istate> {
         const {title} = this.props
         console.log(isFullScreen)
         return (
-            <div className={styles.window} ref={e => {
+            <div className={classname([styles.window, 'zoomIn'])} ref={e => {
                 if (e) {
                     this.raletive.windows = e                    
                 }
             }}>
                 <div className={styles.header}
-                    onMouseDown={this.mouseDownHandle.bind(this)}>
-                    <span>{title}</span>
+                    id="windowHeader">
+                    <div className={styles.left}>
+                        <Icon size={'md'} type="left"/>
+                        <span>{title}</span>
+                    </div>
                     <div className={styles.right}>
-                        <svg className="icon" aria-hidden="true">
+                        <svg className="icon" aria-hidden="true" onClick={this.props.onClose}>
+                            <use xlinkHref="#icon-windows" />
+                        </svg> 
+                        {/* <svg className="icon" aria-hidden="true">
                             <use xlinkHref="#icon-jianhao" />
                         </svg>
                         {
                             !isFullScreen ? (
-                                <svg className="icon" aria-hidden="true" onClick={this.fullScreen.bind(this)}>
+                                <svg className="icon" aria-hidden="true" onClick={e => {
+                                    e.stopPropagation()
+                                    this.fullScreen()
+                                }}>
                                     <use xlinkHref="#icon-quanping" />
                                 </svg>                    
                             ) : (
-                                <svg className="icon" aria-hidden="true" onClick={this.exitScreen.bind(this)}>
+                                <svg className="icon" aria-hidden="true" onClick={e => {
+                                    e.stopPropagation()
+                                    this.exitScreen()
+                                }}>
                                     <use xlinkHref="#icon-huanyuan" />
                                 </svg>                    
                             )
                         }
                         <svg onClick={this.props.onClose} className="icon" aria-hidden="true">
                             <use xlinkHref="#icon-guanbi" />
-                        </svg>
+                        </svg> */}
                     </div>
                 </div>
                 <div className={styles.content}>
-                    <div className={styles['ohter']}>
-                        <div className={classname([styles['content-left'], styles['scalc']])}/>
-                        <div className={styles.main}>
-                            {this.props.children}                        
-                        </div>
-                        <div className={classname([styles['content-right'], styles['scalc']])} />
+                    <div className={styles.main}>
+                        {this.props.children}                        
                     </div>
-                    <div className={classname([styles['content-bottom'], styles['scalc']])} />
                 </div>
             </div>
         )
     }
 
-    exitScreen (e: any): void {
-        e.stopPropagation()
+    exitScreen (): void {
         const {windows, lastLeft, lastTop} = this.raletive
         console.log(this.raletive)
         windows.style.left = '';
@@ -100,8 +107,7 @@ export default class Window extends Component<Iprops, Istate> {
         })
     }
 
-    fullScreen (e: any): void {
-        e.stopPropagation()
+    fullScreen (): void {
         const {isAbleFull = true} = this.props
         if (!isAbleFull) {
             message.info('该app不能全屏')
@@ -137,6 +143,10 @@ export default class Window extends Component<Iprops, Istate> {
         this.raletive.isDown = true
     }
     componentDidMount () {
+        const {isAbleFull = true} = this.props
+        if (isAbleFull) {
+            this.fullScreen()
+        }        
         addDocumentMoveEvent((e: MouseEvent) => {
             if (!this.raletive.isDown) return
             const {pageX, pageY} = e
@@ -172,6 +182,7 @@ export default class Window extends Component<Iprops, Istate> {
     }
 
     componentWillUnmount () {
+
         // removeDocumentMoveEvent()
         // removeDocumentUpEvent()
     }

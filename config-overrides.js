@@ -68,7 +68,7 @@ module.exports = override(
         '@': resolve('src')
     }),
     fixBabelImports('import', {
-        libraryName: 'antd',
+        libraryName: 'antd-mobile',
         libraryDirectory: 'es',
         style: true
     }),
@@ -85,14 +85,14 @@ module.exports = override(
         require("postcss-aspect-ratio-mini"), 
         require("postcss-write-svg")({utf8: false}), 
         // require("postcss-cssnext"), 
-        // require("postcss-px-to-viewport")({    
-        //     viewportWidth: 750,    
-        //     unitPrecision: 3,    
-        //     viewportUnit: 'vw',    
-        //     selectorBlackList: ['.ignore', '.hairlines', /antd-/, /am-/, /.*--material/],    
-        //     minPixelValue: 1,   
-        //     mediaQuery: false
-        // }),
+        require("postcss-px-to-viewport")({    
+            viewportWidth: 750,
+            unitPrecision: 3,
+            viewportUnit: 'vw',
+            selectorBlackList: ['.ignore', '.hairlines', /antd-/, /am-/, /.*--material/],    
+            minPixelValue: 1,
+            mediaQuery: false
+        }),
     ]),
     addTslintLoader(),
     publicPath()

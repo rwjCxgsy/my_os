@@ -1,31 +1,50 @@
 .computer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     .input {
+        flex: 1;
         table {
+            width: 100%;
             tr {
+                height: 20%;
+                min-height: 20%;
                 td {
                     background-color: #bbb;
-                    cursor: pointer;
+                    border-radius: 50px;
+                    overflow: hidden;
+                    width: 25%;
                     text-align: center;
                     border: 1px solid #fff;
-                    width: 50px;
-                    height: 50px;
                     font-weight: bold;
                     transition: all 0.1s linear;
-                    &:hover {
-                        background-color: #999;
+                    font-size: 48px;
+                    vertical-align: middle;
+                    &:active {
+                        background-color: #3481f5;
                         color: #fff;
+                        font-size: 80px;
                     }
                 }
             }
         }
     }
     .output {
-        width: 200px;
-        height: 50px;
-        font-size: bold;
-        font-size: 20px;
+        padding: 0 10px;
+        height: 300px;
+        font-size: 80px;
         display: flex;
         align-items: flex-end;
+        text-align: right;
         justify-content: flex-end;
+        // align-content: flex-end;
+        
+        // flex-wrap: wrap;
+        p {
+            width: 100%;
+            overflow: hidden;
+            text-align-last: end;
+            word-wrap:break-word;
+        }
     }
 }

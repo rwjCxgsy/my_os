@@ -1,12 +1,13 @@
-import React, {Component} from 'react'
+import React, {Component, Children} from 'react'
 import {Route, HashRouter, Switch} from 'react-router-dom'
 
 // import Merchant from './route/merchant'
 
-interface Routeres {
+export interface Routeres {
     path: string,
     exact: boolean,
     component: any,
+    children?: any
 }
 
 let Routes: Routeres[] = [
@@ -26,25 +27,24 @@ let Routes: Routeres[] = [
 ]
 
 
-const renderRoutes = (Routes: Routeres[]) => {
+export const renderRoutes = (Routes: Routeres[]) => {
     return (
         <Switch>
             {
                 Routes.map((v, i) => {
-                    // if (v.children) {
-                    //     return <Route key={i} exact={v.exact} path={v.path} render={() => {
-                    //         return (
-                    //             <v.component>
-                    //                 {
-                    //                     renderRoutes(v.children)
-                    //                 }
-                    //             </v.component>
-                    //         )
-                    //     }} />
-                    // } else {
-                    //     return <Route key={i} exact={true} path={v.path} component={v.component} />
-                    // }
-                    return <Route key={i} exact={true} path={v.path} component={v.component} />
+                    if (v.children) {
+                        return <Route key={i} exact={v.exact} path={v.path} render={() => {
+                            return (
+                                <v.component>
+                                    {
+                                        renderRoutes(v.children)
+                                    }
+                                </v.component>
+                            )
+                        }} />
+                    } else {
+                        return <Route key={i} exact={true} path={v.path} component={v.component} />
+                    }
                 })
             }
         </Switch>
