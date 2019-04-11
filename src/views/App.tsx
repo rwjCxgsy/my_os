@@ -75,6 +75,11 @@ class App extends Component<Iporps, Istate> {
     history.listen(listener => {
       console.log(listener)
     })
+    navigator.geolocation.getCurrentPosition(data => {
+      console.log(data)
+    }, error => {
+      console.log(error)
+    })
   }
 
   openLauncher (launcher: Ilauncher): void {
@@ -111,14 +116,11 @@ class App extends Component<Iporps, Istate> {
     }}/>, app)
 
     document.body.append(app)
-    console.log('添加完成')
-    console.log(document.getElementById(`appId_${launcher.id}`))
   }
 
 }
 
 const mapState = (state: any) => {
-  console.log(state)
   return {
     launcherList: state.launcherList
   }

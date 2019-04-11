@@ -16,6 +16,7 @@ declare module 'classnames'
 // declare module 'react-redux'
 declare module 'nprogress'
 declare module 'xgplayer-react'
+declare module 'vconsole'
 // declare const AMap: any
 // declare const xhr: any
 
