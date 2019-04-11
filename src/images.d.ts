@@ -26,6 +26,7 @@ declare interface Ilauncher {
     icon: string,
     title: string,
     app?: Component,
+    router?: string
 }
 
 

@@ -4,6 +4,8 @@ import Browser from '../app/browser'
 import Os from '../app/os'
 import Elevator from '../app/elevator'
 import YouKu from '../app/youku'
+import News from '../app/news'
+
 let iocnList: Ilauncher[] = [
     {
         type: 2,
@@ -31,7 +33,8 @@ let iocnList: Ilauncher[] = [
         id: '4',
         icon: '#icon-xinwennews',
         title: '新闻',
-        app: YouKu
+        app: News,
+        router: '/news'
     },
     {
         type: 2,

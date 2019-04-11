@@ -10,7 +10,9 @@ import {getAppList} from './appList'
 
 import TopSearch from '../components/serach'
 import TopWeather from '../components/weather'
+import {createHashHistory} from 'history'
 
+const history = createHashHistory()
 // import Clock from '../components/clock';
 // import Enum from '../components/enum'
 // import NProgress from 'nprogress'
@@ -69,28 +71,48 @@ class App extends Component<Iporps, Istate> {
     )
   }
 
+  componentDidMount () {
+    history.listen(listener => {
+      console.log(listener)
+    })
+  }
+
   openLauncher (launcher: Ilauncher): void {
+
     if (!launcher.app) {
-      message.error(`${launcher.title}未安装`)
+      console.error(`${launcher.title}未安装`)
       return
     }
-    
-    if (runApps['appId_' + launcher.id]) {
-      message.info('运行中...');
+
+
+    const appId = Date.now().toString(16)
+    if (runApps[appId]) {
+      console.log('运行中...')
       return
     }
+
     const app: HTMLElement = document.createElement('div')
-    app.setAttribute('id', 'appId_' + launcher.id)
-    runApps[launcher.id] = app
+    app.setAttribute('id', appId)
+
+    runApps[appId] = {
+      ele: app,
+      ...launcher
+    }
+
+    if (launcher.router) {
+      console.log(history)
+      history.push(launcher.router)
+      // window.location.hash = launcher.router
+    }
+
     render(<launcher.app title={launcher.title} onClose={() => {
       app.remove()
-      delete runApps[launcher.id]
+      delete runApps[appId]
     }}/>, app)
+
     document.body.append(app)
-    setTimeout(() => {
-      console.log('添加完成')
-      console.log(document.getElementById(`appId_${launcher.id}`))
-    }, 0)
+    console.log('添加完成')
+    console.log(document.getElementById(`appId_${launcher.id}`))
   }
 
 }

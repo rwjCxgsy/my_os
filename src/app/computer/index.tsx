@@ -84,9 +84,9 @@ export default class Computer extends Component<any> {
       if (isNaN(Number(v))) {
         return false
       }
+      console.log(Number(v))
       return typeof Number(v) === 'number'
     })
-    console.log(check)
     if (!check) return false
     if (['*', '/', '-', '+', '.'].includes(last) && sign) {
       txt = txt.substring(0, length - 1) + value
@@ -98,7 +98,10 @@ export default class Computer extends Component<any> {
     })
   }
   computerResult () {
-    console.log(txt)
+    if (!txt) return
+    txt = txt.replace(/(\d)+/g, (v: string): any => {
+      return Number(v) + ''
+    })
     try {
       const result = eval(txt)
       txt = result + ''
@@ -106,7 +109,7 @@ export default class Computer extends Component<any> {
         result: txt
       })   
     } catch (error) {
-      console.error('计算不规范')
+      console.error('计算不规范', error)
     }
   }
   componentDidMount () {
