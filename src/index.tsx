@@ -12,7 +12,7 @@ const Store = createStore(reducers, {}, applyMiddleware(logger))
 
 import vconsole from 'vconsole'
 
-new vconsole()
+// new vconsole()
 
 ReactDOM.render(<Provider store={Store}><App /></Provider>, document.getElementById('root'));
 
