@@ -5,7 +5,9 @@ import {connect} from 'react-redux'
 import styles from './App.module.less';
 import Launcher from '../components/launcher/index'
 import {render} from 'react-dom'
-import {message} from 'antd'
+// import {message} from 'antd'
+import { Toast } from 'react-onsenui'
+import {notification} from 'onsenui'
 import {getAppList} from './appList'
 
 import TopSearch from '../components/serach'
@@ -73,7 +75,7 @@ class App extends Component<Iporps, Istate> {
 
   componentDidMount () {
     history.listen(listener => {
-      console.log(listener)
+      console.log(listener.pathname)
     })
     navigator.geolocation.getCurrentPosition(data => {
       console.log(data)
@@ -83,9 +85,11 @@ class App extends Component<Iporps, Istate> {
   }
 
   openLauncher (launcher: Ilauncher): void {
-
     if (!launcher.app) {
-      console.error(`${launcher.title}未安装`)
+      notification.alert({
+        message: `${launcher.title}未安装`,
+        title: '提示'
+      })
       return
     }
 

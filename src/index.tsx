@@ -8,6 +8,9 @@ import {createStore, applyMiddleware} from "redux"
 import logger from 'redux-logger'
 import {Provider} from 'react-redux';
 
+import 'onsenui/css/onsenui.css';
+import 'onsenui/css/onsen-css-components.css';
+
 const Store = createStore(reducers, {}, applyMiddleware(logger))
 
 import vconsole from 'vconsole'

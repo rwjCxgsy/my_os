@@ -1,6 +1,8 @@
 import React, {Component, Children} from 'react'
 import {Route, HashRouter, Switch} from 'react-router-dom'
+import {createHashHistory} from 'history'
 
+const history = createHashHistory()
 // import Merchant from './route/merchant'
 
 export interface Routeres {

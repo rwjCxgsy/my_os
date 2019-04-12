@@ -61,8 +61,7 @@ let iocnList: Ilauncher[] = [
         type: 2,
         id: '7',
         icon: '#icon-tianqi',
-        title: '天气',
-        app: YouKu
+        title: '天气'
     }
 ]
 

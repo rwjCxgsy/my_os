@@ -83,3 +83,11 @@ body p {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
 }
+
+.fab--bottom__right {
+  background-color: #0076ff !important;
+  color: #fff !important;
+}
+.fab--bottom__right::after {
+  color: #fff !important;
+}

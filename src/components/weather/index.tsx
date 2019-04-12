@@ -69,21 +69,21 @@ export default class TopWeather extends Component {
   getData (url: string, option = {}) {
     console.log('调用jsonp')
     return new Promise((resolve, reject) => {
-      // const data = {
-      //   "resultcode":"200",
-      //   "reason":"successed!",
-      //   "result":{"sk":{"temp":"18","wind_direction":"东北风","wind_strength":"5级","humidity":"76%","time":"14:13"},"today":{"temperature":"14℃~22℃","weather":"晴转多云","weather_id":{"fa":"00","fb":"01"},"wind":"持续无风向微风","week":"星期三","city":"成都","date_y":"2019年04月10日","dressing_index":"较舒适","dressing_advice":"建议着薄外套、开衫牛仔衫裤等服装。年老体弱者应适当添加衣物，宜着夹克衫、薄毛衣等。","uv_index":"中等","comfort_index":"","wash_index":"较适宜","travel_index":"较适宜","exercise_index":"较适宜","drying_index":""},"future":{"day_20190410":{"temperature":"14℃~22℃","weather":"晴转多云","weather_id":{"fa":"00","fb":"01"},"wind":"持续无风向微风","week":"星期三","date":"20190410"},"day_20190411":{"temperature":"15℃~23℃","weather":"阴转小雨","weather_id":{"fa":"02","fb":"07"},"wind":"持续无风向微风","week":"星期四","date":"20190411"},"day_20190412":{"temperature":"16℃~23℃","weather":"小雨转多云","weather_id":{"fa":"07","fb":"01"},"wind":"持续无风向微风","week":"星期五","date":"20190412"},"day_20190413":{"temperature":"14℃~22℃","weather":"多云转阵雨","weather_id":{"fa":"01","fb":"03"},"wind":"持续无风向微风","week":"星期六","date":"20190413"},"day_20190414":{"temperature":"12℃~22℃","weather":"多云转小雨","weather_id":{"fa":"01","fb":"07"},"wind":"持续无风向微风","week":"星期日","date":"20190414"},"day_20190415":{"temperature":"15℃~23℃","weather":"阴转小雨","weather_id":{"fa":"02","fb":"07"},"wind":"持续无风向微风","week":"星期一","date":"20190415"},"day_20190416":{"temperature":"16℃~23℃","weather":"小雨转多云","weather_id":{"fa":"07","fb":"01"},"wind":"持续无风向微风","week":"星期二","date":"20190416"}}},
-      //   "error_code":0
-      // }
-      // resolve(data)
-      jsonp(url, option, (err: any, data: any) => {
-        if (err) {
-          reject(err)
-        }
-        console.log('获取天气成功')
-        console.log(data)
-        resolve(data)
-      })
+      const data = {
+        "resultcode":"200",
+        "reason":"successed!",
+        "result":{"sk":{"temp":"18","wind_direction":"东北风","wind_strength":"5级","humidity":"76%","time":"14:13"},"today":{"temperature":"14℃~22℃","weather":"晴转多云","weather_id":{"fa":"00","fb":"01"},"wind":"持续无风向微风","week":"星期三","city":"成都","date_y":"2019年04月10日","dressing_index":"较舒适","dressing_advice":"建议着薄外套、开衫牛仔衫裤等服装。年老体弱者应适当添加衣物，宜着夹克衫、薄毛衣等。","uv_index":"中等","comfort_index":"","wash_index":"较适宜","travel_index":"较适宜","exercise_index":"较适宜","drying_index":""},"future":{"day_20190410":{"temperature":"14℃~22℃","weather":"晴转多云","weather_id":{"fa":"00","fb":"01"},"wind":"持续无风向微风","week":"星期三","date":"20190410"},"day_20190411":{"temperature":"15℃~23℃","weather":"阴转小雨","weather_id":{"fa":"02","fb":"07"},"wind":"持续无风向微风","week":"星期四","date":"20190411"},"day_20190412":{"temperature":"16℃~23℃","weather":"小雨转多云","weather_id":{"fa":"07","fb":"01"},"wind":"持续无风向微风","week":"星期五","date":"20190412"},"day_20190413":{"temperature":"14℃~22℃","weather":"多云转阵雨","weather_id":{"fa":"01","fb":"03"},"wind":"持续无风向微风","week":"星期六","date":"20190413"},"day_20190414":{"temperature":"12℃~22℃","weather":"多云转小雨","weather_id":{"fa":"01","fb":"07"},"wind":"持续无风向微风","week":"星期日","date":"20190414"},"day_20190415":{"temperature":"15℃~23℃","weather":"阴转小雨","weather_id":{"fa":"02","fb":"07"},"wind":"持续无风向微风","week":"星期一","date":"20190415"},"day_20190416":{"temperature":"16℃~23℃","weather":"小雨转多云","weather_id":{"fa":"07","fb":"01"},"wind":"持续无风向微风","week":"星期二","date":"20190416"}}},
+        "error_code":0
+      }
+      resolve(data)
+      // jsonp(url, option, (err: any, data: any) => {
+      //   if (err) {
+      //     reject(err)
+      //   }
+      //   console.log('获取天气成功')
+      //   console.log(data)
+      //   resolve(data)
+      // })
     })
   }
 
