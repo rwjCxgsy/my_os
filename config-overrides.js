@@ -130,13 +130,9 @@ module.exports = {
         addTslintLoader(),
         publicPath()
     ),
-    devServer () {
-        return (server) => {
-            console.log('----------------')
-            console.log(server)
-            return server
-        }
-    }
+    devServer: overrideDevServer(
+        server()
+    )
 }
 
 // module.exports = override(
