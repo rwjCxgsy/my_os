@@ -91,3 +91,7 @@ body p {
 .fab--bottom__right::after {
   color: #fff !important;
 }
+
+ons-alert-dialog-button:nth-last-of-type(1) {
+  color: #0076ff;
+}
