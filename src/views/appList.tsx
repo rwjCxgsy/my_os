@@ -1,10 +1,11 @@
 
 import Computer from '../app/computer'
 import Browser from '../app/browser'
-import Os from '../app/os'
-import Elevator from '../app/elevator'
+// import Os from '../app/os'
+// import Elevator from '../app/elevator'
 import YouKu from '../app/youku'
 import News from '../app/news'
+import Wechat from '../app/wechat'
 
 let iocnList: Ilauncher[] = [
     {
@@ -15,13 +16,13 @@ let iocnList: Ilauncher[] = [
         app: Computer,
         router: '/jisuanqi'
     },
-    {
-        type: 2,
-        id: '2',
-        icon: '#icon-xiami',
-        title: '模拟电梯',
-        app: Elevator
-    },
+    // {
+    //     type: 2,
+    //     id: '2',
+    //     icon: '#icon-xiami',
+    //     title: '模拟电梯',
+    //     app: Elevator
+    // },
     {
         type: 2,
         id: '3',
@@ -56,7 +57,8 @@ let iocnList: Ilauncher[] = [
         id: '7',
         icon: '#icon-weixindenglu',
         title: '微信',
-        app: YouKu
+        app: Wechat,
+        router: '/wechat'
     },
     {
         type: 2,
