@@ -12,7 +12,8 @@ let iocnList: Ilauncher[] = [
         id: '1',
         icon: '#icon-jisuanqi1',
         title: '计算器',
-        app: Computer
+        app: Computer,
+        router: '/jisuanqi'
     },
     {
         type: 2,

@@ -68,12 +68,8 @@ export default class Window extends Component<Iprops, Istate> {
 
     pageBack = () => {
         let {hash} = location
-        hash = hash.slice(1)
-        const path = hash.split('/')
-        let length = 0
-        path.forEach(v => {
-            if (v) length++
-        })
+        hash = hash.slice(2)
+        const {length} = hash.split('/')
         if (!hash || length === 1) {
             notification.confirm({
                 title: '提示',
@@ -93,8 +89,15 @@ export default class Window extends Component<Iprops, Istate> {
 
     }
     closeWindow = () => {
-        this.props.onClose()
-        history.goBack()
+        notification.confirm({
+            title: '提示',
+            message: '确定要退出app吗？'
+        }).then((isOk: any): void => {
+            if (isOk === 1) {
+                history.goBack()
+                this.props.onClose()                    
+            }
+        })
     }
 
     componentWillUnmount () {

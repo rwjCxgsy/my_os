@@ -95,3 +95,7 @@ body p {
 ons-alert-dialog-button:nth-last-of-type(1) {
   color: #0076ff;
 }
+
+.article-src-time {
+  margin-bottom: 30px;
+}
