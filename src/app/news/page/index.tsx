@@ -4,7 +4,7 @@ import jsonp from 'jsonp'
 import styles from './index.module.less';
 import list from './list';
 import { Fab, Icon } from 'react-onsenui';
-
+import {Link} from 'react-router-dom'
 interface Istate {
   list: any []
 }
@@ -21,10 +21,10 @@ export default class News extends Component<any, Istate> {
         <Fab modifier="mini" position={'bottom right'}>
           <Icon icon="reorder"/>
         </Fab>
-        <ul>
+        <div className={styles.list}>
           {
             list.map((v, i) => {
-              return <li key={i}>
+              return <Link to={`/news/info?url=${encodeURIComponent(v.url)}`} key={i}>
                 <div>
                   <strong>{v.title}</strong>
                   <div className={styles.imgs}>
@@ -33,10 +33,10 @@ export default class News extends Component<any, Istate> {
                   <p>文章作者<i>{v.author_name}</i></p>
                   <span>{v.date}</span>
                 </div>
-              </li>
+              </Link>
             })
           }          
-        </ul>
+        </div>
       </div>
     )
   }

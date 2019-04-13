@@ -1,25 +1,10 @@
 
-export function addDocumentMoveEvent (fn: (e: MouseEvent) => void) {
-    document.addEventListener('mousemove', e => {
-        fn(e)
-    })
-}
-
-export function removeDocumentMoveEvent () {
-    document.removeEventListener('mousemove', e => {
-        console.log('移除')
-    })
-}
-
-
-export function addDocumentUpEvent (fn: (e: MouseEvent) => void) {
-    document.addEventListener('mouseup', e => {
-        fn(e)
-    })
-}
-
-export function removeDocumentUpEvent () {
-    document.removeEventListener('mouseup', e => {
-        console.log('移除')
-    })
+export function parseQuery (query: string) {
+    let search = location.href.split('?')[1]
+    if (!search) {
+        return null
+    }
+    const reg = `(${query})=([^&]+)`
+    const result = search.match(reg)
+    return result ? result[2] : null
 }
