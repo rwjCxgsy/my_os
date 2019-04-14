@@ -21,7 +21,7 @@ class Launcher extends React.Component<any> {
     open () {
         console.log('')
         const {onOpen} = this.props
-        console.log('onOpen')
+        console.log('onOpen', onOpen)
         onOpen()
     }
 }

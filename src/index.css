@@ -99,3 +99,9 @@ ons-alert-dialog-button:nth-last-of-type(1) {
 .article-src-time {
   margin-bottom: 30px;
 }
+ons-splitter-side {
+  background-color: #fff;
+}
+ons-splitter {
+  z-index: 999999 !important;
+}

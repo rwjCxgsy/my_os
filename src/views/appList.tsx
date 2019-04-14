@@ -16,13 +16,6 @@ let iocnList: Ilauncher[] = [
         app: Computer,
         router: '/jisuanqi'
     },
-    // {
-    //     type: 2,
-    //     id: '2',
-    //     icon: '#icon-xiami',
-    //     title: '模拟电梯',
-    //     app: Elevator
-    // },
     {
         type: 2,
         id: '3',
