@@ -5,6 +5,7 @@ import classname from 'classnames'
 import {createHashHistory} from 'history'
 import {notification} from 'onsenui'
 const history = createHashHistory()
+console.log(styles)
 interface Istate {
     isFullScreen: boolean
 }
@@ -33,7 +34,6 @@ export default class Window extends Component<Iprops, Istate> {
     render() {
         const {isFullScreen} = this.state
         const {title} = this.props
-        console.log(isFullScreen)
         return (
             <div className={classname([styles.window, 'zoomIn'])} ref={e => {
                 if (e) {
@@ -86,7 +86,13 @@ export default class Window extends Component<Iprops, Istate> {
     }
 
     componentDidMount () {
-
+        setTimeout(() => {
+            const windowEle: HTMLElement | null = document.querySelector('.' + styles.window)
+            windowEle!.style.width = '100%';
+            windowEle!.style.height = '100%';
+            windowEle!.style.opacity = '1';
+            setTimeout((window as any).pageLoad, 100)
+        }, 200)
     }
     closeWindow = () => {
         notification.confirm({
@@ -101,7 +107,7 @@ export default class Window extends Component<Iprops, Istate> {
     }
 
     componentWillUnmount () {
-
+        (window as any).pageLoad = () => {}
         // removeDocumentMoveEvent()
         // removeDocumentUpEvent()
     }

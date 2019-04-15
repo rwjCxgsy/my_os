@@ -147,8 +147,8 @@ export default class News extends Component<any, Istate> {
   }
 
   componentWillMount () {
-    loading('加载中...')
-    this.initData()
-    setTimeout(destory, 1000)
+    // loading('加载中...')
+    setTimeout(this.initData.bind(this), 350)
+    // setTimeout(destory, 1000)
   }
 }

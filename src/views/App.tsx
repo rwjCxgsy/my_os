@@ -4,7 +4,7 @@ import React, { Component, ReactEventHandler, MouseEvent } from 'react';
 import {connect} from 'react-redux'
 import styles from './App.module.less';
 import Launcher from '../components/launcher/index'
-import {render} from 'react-dom'
+import ReactDOM from 'react-dom'
 // import {message} from 'antd'
 import { Toast } from 'react-onsenui'
 import {notification} from 'onsenui'
@@ -114,7 +114,8 @@ class App extends Component<Iporps, Istate> {
       // window.location.hash = launcher.router
     }
 
-    render(<launcher.app title={launcher.title} onClose={() => {
+    ReactDOM.render(<launcher.app title={launcher.title} onClose={() => {
+      ReactDOM.unmountComponentAtNode(app)
       app.remove()
       delete runApps[appId]
     }}/>, app)

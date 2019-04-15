@@ -3,120 +3,105 @@ import styles from './index.module.less'
 import Window from '../../components/window'
 import classnames from 'classnames'
 // import Xgplayer from 'xgplayer-react';
-import {message} from 'antd'
+// import {message} from 'antd'
+// import _ from 'lodash';
 console.log(styles)
 let Player: HTMLVideoElement | null = null
 
+// console.log(_)
 
-const videoList = [
-    {
-        url: 'https://h5player.bytedance.com/video/mp4/xgplayer-demo-720p.mp4',
-        title: '西瓜视频宣传片'
-    },
-    {
-        url: 'https://vdn1.vzuu.com/SD/b5fc7060-4e9d-11e9-8db6-0a580a449c44.mp4?disable_local_cache=1&bu=com&expiration=1579850414&auth_key=1553850414-0-0-14e757956416c5ef1fecf41515d11dc0&f=mp4&v=hw',
-        title: '海洋里到底有什么可怕的东西？'
-    },
-    {
-        url: 'http://hc.yinyuetai.com/uploads/videos/common/BE600169CBBFFACE8BC6383ED22133C3.mp4?sc=8358efeab6ff2fb1&br=781&vid=3368599&aid=43925&area=US&vst=0',
-        title: '【MV】Billie Eilish-bad guy '
-    }
-]
+// const _ = require('lodash/array')
+// console.log(_)
 
-export default class Youku extends Component<any> {
+let divPosition: any[] = []
+export default class Password extends Component<any> {
 
     state: any = {
-        isFullScreen: false,
-        url: ''
+        paw: [1, 2, 3, 4, 5]
     }
 
   render() {
     const {title, onClose} = this.props
     const {url, isFullScreen} = this.state
+    const map = [
+        1,2,3,
+        4,5,6,
+        7,8,9
+    ]
     return (
-      <Window title={title} onClose={onClose} onFullScreen={this.fullScreen.bind(this)}>
-        <div className={classnames({
-            [styles.youku]: true,
-            [styles.full]: isFullScreen
-        })}>
-            <div className={styles.left}>
-                {/* <Xgplayer config={config} playerInit={(player: any) => {
-                    Player = player
-                 }} /> */}
-                 <video controls ref={e => {Player = e}} controlsList="nodownload" src={url}/>
-            </div>
-            <div className={styles.right}>
-                <ul>
-                        {
-                            videoList.map((v, i) => {
-                                return (
-                                    <li className={classnames({
-                                        [styles.active]: url === v.url
-                                    })} key={i} onClick={this.changeVideo.bind(this, v)}>{v.title}</li>
-                                )
-                            })
-                        }
-                </ul>
+      <Window title={title} onClose={onClose}>
+        <div className={styles.password}>
+            <p></p>
+            <div id="points">
+                {
+                    map.map(v => {
+                        return <div key={v}>
+                            <span />
+                        </div>
+                    })
+                }
+                <canvas id="canvas" />
             </div>
         </div>
       </Window>
     )
   }
 
-  fullScreen () {
-      this.setState({
-        ...this.state,
-        isFullScreen: true
-      })
-  }
-
-  changeVideo (v: any) {
-    this.setState({
-        url: v.url
-    })
-  }
-
-  nextPlayVideo (tips: string, isError: boolean) {
-    const {url} = this.state
-    const current = videoList.find(v => url === v.url)
-    if (isError) {
-        message.error(tips)
-    } else {
-        message.warn(tips)
-    }
-    let nextVideo = videoList[0]
-    videoList.forEach((v, i, a) => {
-        if (v === current) {
-            if (a[i+1]) {
-                nextVideo = a[i+1]
-            } else {
-                nextVideo = a[0]
-            }
-        }
-    })
-    setTimeout(() => {
-        this.setState({
-            url: nextVideo.url
-        })
-    }, 1000)
-  }
-
   componentDidMount () {
-    Player!.addEventListener('loadeddata', () => {
-        console.log('加载成功')
-        Player!.play()
-    })
-    Player!.addEventListener('ended', () => {
-        this.nextPlayVideo('该视频已播放完毕，即将播放下一个', false)
-    })
-    Player!.addEventListener("error", () => {
-        this.nextPlayVideo('该视频已失效，即将播放下一个', true)
-    })
+
+      const getDivPositionLeft = (node: any) => {
+          let left = node.offsetLeft
+          let parent = node.offsetParent
+          debugger
+          while(parent) {
+            left += parent.offsetLeft
+            parent = parent.offsetParent
+          }
+          return left
+      }
+
+      const getDivPositionTop = (node: any) => {
+        let Top = node.offsetTop
+        while(node.offsetParent) {
+          Top += node.offsetParent.offsetTop
+          node = node.offsetParent
+        }
+        return Top
+    }
+      setTimeout(() => {
+        const div = document.querySelectorAll('#points div');
+        divPosition: any[] = [];
+        [].forEach.call(div, (v: any, i: number, a: any) => {
+            divPosition.push({
+                left: v.getBoundingClientRect().left | 0,
+                top: v.getBoundingClientRect().top | 0,
+                width: v.offsetWidth,
+                height: v.offsetHeight
+            })
+        })    
+        console.log(div, divPosition)
+        this.getCanvasContext()
+      }, 305)
   }
 
-  componentWillMount () {
-      this.setState({
-          url: videoList[0].url
+  getCanvasContext () {
+      const canvas: HTMLCanvasElement = (document.getElementById('canvas') as HTMLCanvasElement)
+      const context = canvas!.getContext('2d');
+      let isTouch = false
+      canvas.addEventListener('touchstart', e => {
+        isTouch = true
       })
+      document.addEventListener('touchmove', e => {
+          if (!isTouch) return
+          const {pageX, pageY} = e.touches[0]
+          console.log(pageX, pageY)
+        //   divPosition.find(v => {
+        //       return v
+        //   })
+      })
+
+      document.addEventListener('touchend', e => {
+        isTouch = false
+    })
   }
 }
