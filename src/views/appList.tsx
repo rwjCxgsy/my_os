@@ -38,21 +38,21 @@ let iocnList: Ilauncher[] = [
         title: '音乐',
         app: YouKu
     },
-    {
-        type: 2,
-        id: '6',
-        icon: '#icon-xiangji',
-        title: '相机',
-        app: YouKu
-    },
-    {
-        type: 2,
-        id: '7',
-        icon: '#icon-weixindenglu',
-        title: '微信',
-        app: Wechat,
-        router: '/wechat'
-    },
+    // {
+    //     type: 2,
+    //     id: '6',
+    //     icon: '#icon-xiangji',
+    //     title: '相机',
+    //     app: YouKu
+    // },
+    // {
+    //     type: 2,
+    //     id: '7',
+    //     icon: '#icon-weixindenglu',
+    //     title: '微信',
+    //     app: Wechat,
+    //     router: '/wechat'
+    // },
     {
         type: 2,
         id: '7',

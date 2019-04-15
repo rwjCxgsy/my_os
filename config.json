@@ -1,20 +1,19 @@
 {
-  "mode": "development",
-  "bail": false,
-  "devtool": "cheap-module-source-map",
+  "mode": "production",
+  "bail": true,
+  "devtool": "source-map",
   "entry": [
-    "E:\\study\\my_os\\node_modules\\react-scripts\\node_modules\\react-dev-utils\\webpackHotDevClient.js",
     "E:\\study\\my_os\\src\\index.tsx"
   ],
   "output": {
     "path": "E:\\study\\my_os\\dist",
-    "pathinfo": true,
-    "filename": "static/js/bundle.js",
-    "chunkFilename": "static/js/[name].chunk.js",
+    "pathinfo": false,
+    "filename": "static/js/[name].[contenthash:8].js",
+    "chunkFilename": "static/js/[name].[contenthash:8].chunk.js",
     "publicPath": "./"
   },
   "optimization": {
-    "minimize": false,
+    "minimize": true,
     "minimizer": [
       {
         "options": {
@@ -181,7 +180,7 @@
               "presets": [
                 "E:\\study\\my_os\\node_modules\\babel-preset-react-app\\index.js"
               ],
-              "cacheIdentifier": "development:babel-plugin-named-asset-import@0.3.1:babel-preset-react-app@7.0.2:react-dev-utils@8.0.0:react-scripts@2.1.8",
+              "cacheIdentifier": "production:babel-plugin-named-asset-import@0.3.1:babel-preset-react-app@7.0.2:react-dev-utils@8.0.0:react-scripts@2.1.8",
               "plugins": [
                 [
                   "E:\\study\\my_os\\node_modules\\babel-plugin-named-asset-import\\index.js",
@@ -204,8 +203,8 @@
                 ]
               ],
               "cacheDirectory": true,
-              "cacheCompression": false,
-              "compact": false
+              "cacheCompression": true,
+              "compact": true
             }
           },
           {
@@ -225,8 +224,8 @@
                 ]
               ],
               "cacheDirectory": true,
-              "cacheCompression": false,
-              "cacheIdentifier": "development:babel-plugin-named-asset-import@0.3.1:babel-preset-react-app@7.0.2:react-dev-utils@8.0.0:react-scripts@2.1.8",
+              "cacheCompression": true,
+              "cacheIdentifier": "production:babel-plugin-named-asset-import@0.3.1:babel-preset-react-app@7.0.2:react-dev-utils@8.0.0:react-scripts@2.1.8",
               "sourceMaps": false
             }
           },
@@ -234,19 +233,22 @@
             "test": {},
             "exclude": {},
             "use": [
-              "E:\\study\\my_os\\node_modules\\style-loader\\index.js",
+              {
+                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
+                "options": {}
+              },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 1,
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               }
             ],
@@ -255,12 +257,15 @@
           {
             "test": {},
             "use": [
-              "E:\\study\\my_os\\node_modules\\style-loader\\index.js",
+              {
+                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
+                "options": {}
+              },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 1,
-                  "sourceMap": false,
+                  "sourceMap": true,
                   "modules": true
                 }
               },
@@ -268,7 +273,7 @@
                 "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               }
             ]
@@ -277,25 +282,28 @@
             "test": {},
             "exclude": {},
             "use": [
-              "E:\\study\\my_os\\node_modules\\style-loader\\index.js",
+              {
+                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
+                "options": {}
+              },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 2,
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\sass-loader\\lib\\loader.js",
                 "options": {
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               }
             ],
@@ -304,12 +312,15 @@
           {
             "test": {},
             "use": [
-              "E:\\study\\my_os\\node_modules\\style-loader\\index.js",
+              {
+                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
+                "options": {}
+              },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 2,
-                  "sourceMap": false,
+                  "sourceMap": true,
                   "modules": true
                 }
               },
@@ -317,13 +328,13 @@
                 "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\sass-loader\\lib\\loader.js",
                 "options": {
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               }
             ]
@@ -332,7 +343,10 @@
             "test": {},
             "exclude": {},
             "use": [
-              "E:\\study\\my_os\\node_modules\\style-loader\\index.js",
+              {
+                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
+                "options": {}
+              },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
@@ -343,7 +357,7 @@
                 "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               },
               {
@@ -354,16 +368,19 @@
                     "@primary-color": "#2F54EB"
                   },
                   "localIdentName": "[local]--[hash:base64:5]",
-                  "source": false
+                  "source": true
                 }
               }
             ],
-            "sideEffects": false
+            "sideEffects": true
           },
           {
             "test": {},
             "use": [
-              "E:\\study\\my_os\\node_modules\\style-loader\\index.js",
+              {
+                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
+                "options": {}
+              },
               {
                 "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
@@ -376,7 +393,7 @@
                 "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": false
+                  "sourceMap": true
                 }
               },
               {
@@ -387,7 +404,7 @@
                     "@primary-color": "#2F54EB"
                   },
                   "localIdentName": "[local]--[hash:base64:5]",
-                  "source": false
+                  "source": true
                 }
               }
             ]
@@ -417,7 +434,18 @@
         "inject": true,
         "compile": true,
         "favicon": false,
-        "minify": false,
+        "minify": {
+          "removeComments": true,
+          "collapseWhitespace": true,
+          "removeRedundantAttributes": true,
+          "useShortDoctype": true,
+          "removeEmptyAttributes": true,
+          "removeStyleLinkTypeAttributes": true,
+          "keepClosingSlash": true,
+          "minifyJS": true,
+          "minifyCSS": true,
+          "minifyURLs": true
+        },
         "cache": true,
         "showErrors": true,
         "chunks": "all",
@@ -430,8 +458,13 @@
       "version": 4
     },
     {
+      "tests": [
+        {}
+      ]
+    },
+    {
       "replacements": {
-        "NODE_ENV": "development",
+        "NODE_ENV": "production",
         "PUBLIC_URL": ""
       }
     },
@@ -441,24 +474,16 @@
     {
       "definitions": {
         "process.env": {
-          "NODE_ENV": "\"development\"",
+          "NODE_ENV": "\"production\"",
           "PUBLIC_URL": "\"\""
         }
       }
     },
     {
-      "options": {},
-      "fullBuildTimeout": 200,
-      "requestTimeout": 10000
-    },
-    {
-      "options": {},
-      "pathCache": {},
-      "fsOperations": 0,
-      "primed": false
-    },
-    {
-      "nodeModulesPath": "E:\\study\\my_os\\node_modules"
+      "options": {
+        "filename": "static/css/[name].[contenthash:8].css",
+        "chunkFilename": "static/css/[name].[contenthash:8].chunk.css"
+      }
     },
     {
       "opts": {
@@ -481,10 +506,31 @@
       }
     },
     {
+      "config": {
+        "chunks": [],
+        "exclude": [
+          {},
+          {}
+        ],
+        "excludeChunks": [],
+        "importsDirectory": "",
+        "importScripts": [],
+        "importWorkboxFrom": "cdn",
+        "precacheManifestFilename": "precache-manifest.[manifestHash].js",
+        "swDest": "service-worker.js",
+        "clientsClaim": true,
+        "navigateFallback": "/index.html",
+        "navigateFallbackBlacklist": [
+          {},
+          {}
+        ]
+      }
+    },
+    {
       "startAt": 0,
       "options": {
         "typescript": "E:\\study\\my_os\\node_modules\\typescript\\lib\\typescript.js",
-        "async": true,
+        "async": false,
         "useTypescriptIncrementalApi": true,
         "checkSyntacticErrors": true,
         "tsconfig": "E:\\study\\my_os\\tsconfig.json",
@@ -517,7 +563,7 @@
       ],
       "logger": {},
       "silent": true,
-      "async": true,
+      "async": false,
       "checkSyntacticErrors": true,
       "workersNumber": 1,
       "memoryLimit": 2048,
@@ -558,7 +604,7 @@
           "VeryAggressive": 3
         },
         "Debug": {
-          "currentAssertionLevel": 1,
+          "currentAssertionLevel": 0,
           "isDebugging": false
         },
         "performance": {

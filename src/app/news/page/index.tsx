@@ -5,6 +5,8 @@ import styles from './index.module.less';
 import list from './list';
 import { Fab, Icon} from 'react-onsenui';
 import {Link} from 'react-router-dom'
+
+import { loading, destory } from '../../../utils'
 interface Istate {
   list: any [],
   sideShow: boolean
@@ -145,6 +147,8 @@ export default class News extends Component<any, Istate> {
   }
 
   componentWillMount () {
+    loading('加载中...')
     this.initData()
+    setTimeout(destory, 1000)
   }
 }
