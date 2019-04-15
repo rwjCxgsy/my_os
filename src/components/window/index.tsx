@@ -91,7 +91,7 @@ export default class Window extends Component<Iprops, Istate> {
             windowEle!.style.width = '100%';
             windowEle!.style.height = '100%';
             windowEle!.style.opacity = '1';
-            setTimeout((window as any).pageLoad, 100)
+            setTimeout((window as any).pageLoad, 101)
         }, 200)
     }
     closeWindow = () => {

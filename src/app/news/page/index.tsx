@@ -139,6 +139,7 @@ export default class News extends Component<any, Istate> {
   }
 
   async initData () {
+    loading('加载中...')
     const d = await this.getData('/toutiao/index?type=&key=4b4fbad0b071dd8654ec37ac1f831df3')
     const {data} = (d as any).result
     this.setState({
