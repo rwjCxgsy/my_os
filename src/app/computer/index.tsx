@@ -119,4 +119,8 @@ export default class Computer extends Component<any> {
       table!.style.height = (window.innerHeight - headerHeight - outputHeight) + 'px'
     }, 0)
   }
+
+  componentWillUnmount () {
+    txt = ''
+  }
 }
