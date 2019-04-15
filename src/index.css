@@ -105,3 +105,6 @@ ons-splitter-side {
 ons-splitter {
   z-index: 999999 !important;
 }
+ons-fab {
+  overflow: visible !important;
+}

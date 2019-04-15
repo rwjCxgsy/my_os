@@ -62,25 +62,34 @@ export default class News extends Component<any, Istate> {
 
   render() {
     const {list, sideShow} = this.state
+
+    const scale = 750 / window.innerWidth
+
+    const liHTML = newsType.map((v, i) => {
+      return <li style={{
+        top: Math.sin(Math.PI * 2 / newsType.length * i) * 100 - (40 / scale) + 'px',
+        left: Math.cos(Math.PI * 2 / newsType.length * i) * 100 - (40 / scale) + 'px',
+        opacity: 1,
+      }}>{v.name}</li>
+    })
+
     return (
       <div className={styles.news}>
-        <Fab modifier="mini" position={'bottom right'} onClick={this.showNewsType}>
+        {/* <div>
+          <Icon icon="reorder"/>
+        </div> */}
+        <Fab modifier="mini" position={'bottom right'} onClick={this.toggleNewsType}>
           <Icon icon="reorder"/>
         </Fab>
-        {/* <Splitter>
-          <SplitterSide
-            collapse
-            side="left"
-            width={200}
-            swipeable={false}
-            isOpen={sideShow}>
-            {
-              newsType.map((v, i) => {
-                return <ListItem key={'id_news_type_' + i} >{v.name}</ListItem>
-              })
-            }
-          </SplitterSide>
-        </Splitter> */}
+        {
+          sideShow ? <div className={styles.mask} onClick={this.toggleNewsType}>
+              <div className={styles['news-type']}>
+              {
+                sideShow ? <ul>{liHTML}</ul> : ''
+              }
+            </div>
+          </div> : ''
+        }
         <div className={styles.list}>
           {
             list.map((v, i) => {
@@ -101,24 +110,29 @@ export default class News extends Component<any, Istate> {
     )
   }
 
-  getData (url: string, option: any = {}) {
-    return new Promise((resolve, reject) => {
-      // resolve(list)
-      jsonp(url, option, (err: any, data: any) => {
-        console.log(data, err)
-        if (err) {
-          reject(err)          
-        } else {
-          resolve(data)
-        }
-      })
+  toggleNewsType = () => {
+    this.setState({
+      ...this.state,
+      sideShow: !this.state.sideShow
     })
   }
 
-  showNewsType = () => {
-    this.setState({
-      ...this.state,
-      sideShow: true
+  selectNewsType = (e: any) =>{
+    console.log(e)
+    e.stopPropagation()
+  }
+
+  getData (url: string, option: any = {}) {
+    return new Promise((resolve, reject) => {
+      resolve(list)
+      // jsonp(url, option, (err: any, data: any) => {
+      //   console.log(data, err)
+      //   if (err) {
+      //     reject(err)          
+      //   } else {
+      //     resolve(data)
+      //   }
+      // })
     })
   }
 
