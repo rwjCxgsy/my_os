@@ -70,7 +70,7 @@ export default class Password extends Component<any> {
     }
       setTimeout(() => {
         const div = document.querySelectorAll('#points div');
-        divPosition: any[] = [];
+        // divPosition: any[] = [];
         [].forEach.call(div, (v: any, i: number, a: any) => {
             divPosition.push({
                 left: v.getBoundingClientRect().left | 0,
