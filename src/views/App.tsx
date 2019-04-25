@@ -77,11 +77,11 @@ class App extends Component<Iporps, Istate> {
     history.listen(listener => {
       console.log(listener.pathname)
     })
-    navigator.geolocation.getCurrentPosition(data => {
-      console.log(data)
-    }, error => {
-      console.log(error)
-    })
+    // navigator.geolocation.getCurrentPosition(data => {
+    //   console.log(data)
+    // }, error => {
+    //   console.log(error)
+    // })
   }
 
   openLauncher (launcher: Ilauncher): void {
