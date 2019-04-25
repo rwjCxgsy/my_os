@@ -6,7 +6,7 @@ import styles from './App.module.less';
 import Launcher from '../components/launcher/index'
 import ReactDOM from 'react-dom'
 // import {message} from 'antd'
-import { Toast } from 'react-onsenui'
+// import { Toast } from 'react-onsenui'
 import {notification} from 'onsenui'
 import {getAppList} from './appList'
 
