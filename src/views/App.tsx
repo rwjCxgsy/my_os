@@ -15,9 +15,6 @@ import TopWeather from '../components/weather'
 import {createHashHistory} from 'history'
 
 const history = createHashHistory()
-// import Clock from '../components/clock';
-// import Enum from '../components/enum'
-// import NProgress from 'nprogress'
 
 interface Istate {
   pointX: number,

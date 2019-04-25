@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from './index.module.less'
-export default class SearchTop extends Component {
+export default class SearchTop extends Component<any> {
   render() {
     return (
       <div className={styles['search-top']}>
@@ -15,9 +15,18 @@ export default class SearchTop extends Component {
               <span>s</span>
               <span>y</span>
             </div>
-            <input type="text"/>
+            <input type="search" ref={e => {
+              (e as any).onsearch = this.find
+            }}/>
         </div>
       </div>
     )
+  }
+
+  find = (e: any) => {
+    console.log('搜索')
+    e.target.blur()
+    const {Find = () => {}} = this.props
+    Find()
   }
 }
