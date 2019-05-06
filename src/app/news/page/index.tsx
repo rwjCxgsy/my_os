@@ -128,25 +128,25 @@ export default class News extends Component<any, Istate> {
 
   getData (url: string, option: any = {}) {
     console.log(url)
-    return new Promise((resolve, reject) => {
-      resolve(list)
-      // jsonp(url, option, (err: any, data: any) => {
-      //   console.log(data, err)
-      //   if (err) {
-      //     reject(err)          
-      //   } else {
-      //     resolve(data)
-      //   }
-      // })
-    })
+    // return new Promise((resolve, reject) => {
+    //   resolve(list)
+    //   // jsonp(url, option, (err: any, data: any) => {
+    //   //   console.log(data, err)
+    //   //   if (err) {
+    //   //     reject(err)          
+    //   //   } else {
+    //   //     resolve(data)
+    //   //   }
+    //   // })
+    // })
     return fetch(url)
   }
 
   async initData (type: string = '') {
     loading('加载中...')
     const d = await this.getData(`http://47.102.114.90/api/toutiao/index?type=${type}&key=4b4fbad0b071dd8654ec37ac1f831df3`)
-    // const _json = await (d as any).json()
-    const {data} = (d as any).result
+    const _json = await (d as any).json()
+    const {data} = (_json as any).result
     this.setState({
       list: data
     })

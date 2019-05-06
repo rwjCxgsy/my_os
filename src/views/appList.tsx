@@ -21,7 +21,8 @@ let iocnList: Ilauncher[] = [
         id: '3',
         icon: '#icon-youku',
         title: '优酷',
-        app: YouKu
+        app: YouKu,
+        router: '/youku'
     },
     {
         type: 2,
@@ -36,7 +37,8 @@ let iocnList: Ilauncher[] = [
         id: '5',
         icon: '#icon-yinle',
         title: '音乐',
-        app: YouKu
+        app: YouKu,
+        router: '/music'
     },
     // {
     //     type: 2,

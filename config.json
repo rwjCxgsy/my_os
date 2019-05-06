@@ -1,19 +1,20 @@
 {
-  "mode": "production",
-  "bail": true,
-  "devtool": "source-map",
+  "mode": "development",
+  "bail": false,
+  "devtool": "cheap-module-source-map",
   "entry": [
-    "E:\\study\\my_os\\src\\index.tsx"
+    "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\react-scripts\\node_modules\\react-dev-utils\\webpackHotDevClient.js",
+    "C:\\Users\\cxgsy\\Documents\\work\\my_os\\src\\index.tsx"
   ],
   "output": {
-    "path": "E:\\study\\my_os\\dist",
-    "pathinfo": false,
-    "filename": "static/js/[name].[contenthash:8].js",
-    "chunkFilename": "static/js/[name].[contenthash:8].chunk.js",
+    "path": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\dist",
+    "pathinfo": true,
+    "filename": "static/js/bundle.js",
+    "chunkFilename": "static/js/[name].chunk.js",
     "publicPath": "./"
   },
   "optimization": {
-    "minimize": true,
+    "minimize": false,
     "minimizer": [
       {
         "options": {
@@ -101,7 +102,7 @@
     ],
     "alias": {
       "react-native": "react-native-web",
-      "@": "E:\\study\\my_os\\src"
+      "@": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\src"
     },
     "plugins": [
       {
@@ -109,7 +110,7 @@
       },
       {
         "appSrcs": [
-          "E:\\study\\my_os\\src"
+          "C:\\Users\\cxgsy\\Documents\\work\\my_os\\src"
         ],
         "allowedFiles": {}
       }
@@ -125,7 +126,7 @@
     "rules": [
       {
         "test": {},
-        "loader": "E:\\study\\my_os\\node_modules\\tslint-loader\\index.js",
+        "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\tslint-loader\\index.js",
         "enforce": "pre"
       },
       {
@@ -139,20 +140,20 @@
         "use": [
           {
             "options": {
-              "formatter": "E:\\study\\my_os\\node_modules\\react-scripts\\node_modules\\react-dev-utils\\eslintFormatter.js",
-              "eslintPath": "E:\\study\\my_os\\node_modules\\eslint\\lib\\api.js",
+              "formatter": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\react-scripts\\node_modules\\react-dev-utils\\eslintFormatter.js",
+              "eslintPath": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\eslint\\lib\\api.js",
               "baseConfig": {
                 "extends": [
-                  "E:\\study\\my_os\\node_modules\\eslint-config-react-app\\index.js"
+                  "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\eslint-config-react-app\\index.js"
                 ]
               },
               "ignore": false,
               "useEslintrc": false
             },
-            "loader": "E:\\study\\my_os\\node_modules\\eslint-loader\\index.js"
+            "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\eslint-loader\\index.js"
           }
         ],
-        "include": "E:\\study\\my_os\\src"
+        "include": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\src"
       },
       {
         "oneOf": [
@@ -163,7 +164,7 @@
               {},
               {}
             ],
-            "loader": "E:\\study\\my_os\\node_modules\\url-loader\\dist\\cjs.js",
+            "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\url-loader\\dist\\cjs.js",
             "options": {
               "limit": 10000,
               "name": "static/media/[name].[hash:8].[ext]"
@@ -171,19 +172,19 @@
           },
           {
             "test": {},
-            "include": "E:\\study\\my_os\\src",
-            "loader": "E:\\study\\my_os\\node_modules\\babel-loader\\lib\\index.js",
+            "include": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\src",
+            "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\react-scripts\\node_modules\\babel-loader\\lib\\index.js",
             "options": {
-              "customize": "E:\\study\\my_os\\node_modules\\babel-preset-react-app\\webpack-overrides.js",
+              "customize": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\babel-preset-react-app\\webpack-overrides.js",
               "babelrc": true,
               "configFile": false,
               "presets": [
-                "E:\\study\\my_os\\node_modules\\babel-preset-react-app\\index.js"
+                "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\babel-preset-react-app\\index.js"
               ],
-              "cacheIdentifier": "production:babel-plugin-named-asset-import@0.3.1:babel-preset-react-app@7.0.2:react-dev-utils@8.0.0:react-scripts@2.1.8",
+              "cacheIdentifier": "development:babel-plugin-named-asset-import@0.3.2:babel-preset-react-app@7.0.2:react-dev-utils@8.0.0:react-scripts@2.1.8",
               "plugins": [
                 [
-                  "E:\\study\\my_os\\node_modules\\babel-plugin-named-asset-import\\index.js",
+                  "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\react-scripts\\node_modules\\babel-plugin-named-asset-import\\index.js",
                   {
                     "loaderMap": {
                       "svg": {
@@ -203,29 +204,29 @@
                 ]
               ],
               "cacheDirectory": true,
-              "cacheCompression": true,
-              "compact": true
+              "cacheCompression": false,
+              "compact": false
             }
           },
           {
             "test": {},
             "exclude": {},
-            "loader": "E:\\study\\my_os\\node_modules\\babel-loader\\lib\\index.js",
+            "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\react-scripts\\node_modules\\babel-loader\\lib\\index.js",
             "options": {
               "babelrc": false,
               "configFile": false,
               "compact": false,
               "presets": [
                 [
-                  "E:\\study\\my_os\\node_modules\\babel-preset-react-app\\dependencies.js",
+                  "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\babel-preset-react-app\\dependencies.js",
                   {
                     "helpers": true
                   }
                 ]
               ],
               "cacheDirectory": true,
-              "cacheCompression": true,
-              "cacheIdentifier": "production:babel-plugin-named-asset-import@0.3.1:babel-preset-react-app@7.0.2:react-dev-utils@8.0.0:react-scripts@2.1.8",
+              "cacheCompression": false,
+              "cacheIdentifier": "development:babel-plugin-named-asset-import@0.3.2:babel-preset-react-app@7.0.2:react-dev-utils@8.0.0:react-scripts@2.1.8",
               "sourceMaps": false
             }
           },
@@ -233,22 +234,19 @@
             "test": {},
             "exclude": {},
             "use": [
+              "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\style-loader\\index.js",
               {
-                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
-                "options": {}
-              },
-              {
-                "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 1,
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               }
             ],
@@ -257,23 +255,20 @@
           {
             "test": {},
             "use": [
+              "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\style-loader\\index.js",
               {
-                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
-                "options": {}
-              },
-              {
-                "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 1,
-                  "sourceMap": true,
+                  "sourceMap": false,
                   "modules": true
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               }
             ]
@@ -282,28 +277,25 @@
             "test": {},
             "exclude": {},
             "use": [
+              "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\style-loader\\index.js",
               {
-                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
-                "options": {}
-              },
-              {
-                "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 2,
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\sass-loader\\lib\\loader.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\sass-loader\\lib\\loader.js",
                 "options": {
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               }
             ],
@@ -312,29 +304,26 @@
           {
             "test": {},
             "use": [
+              "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\style-loader\\index.js",
               {
-                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
-                "options": {}
-              },
-              {
-                "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 2,
-                  "sourceMap": true,
+                  "sourceMap": false,
                   "modules": true
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\sass-loader\\lib\\loader.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\sass-loader\\lib\\loader.js",
                 "options": {
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               }
             ]
@@ -343,46 +332,40 @@
             "test": {},
             "exclude": {},
             "use": [
+              "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\style-loader\\index.js",
               {
-                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
-                "options": {}
-              },
-              {
-                "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 2
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\less-loader\\dist\\cjs.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\less-loader\\dist\\cjs.js",
                 "options": {
                   "javascriptEnabled": true,
                   "modifyVars": {
                     "@primary-color": "#2F54EB"
                   },
                   "localIdentName": "[local]--[hash:base64:5]",
-                  "source": true
+                  "source": false
                 }
               }
             ],
-            "sideEffects": true
+            "sideEffects": false
           },
           {
             "test": {},
             "use": [
+              "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\style-loader\\index.js",
               {
-                "loader": "E:\\study\\my_os\\node_modules\\mini-css-extract-plugin\\dist\\loader.js",
-                "options": {}
-              },
-              {
-                "loader": "E:\\study\\my_os\\node_modules\\css-loader\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\css-loader\\index.js",
                 "options": {
                   "importLoaders": 2,
                   "modules": true,
@@ -390,27 +373,27 @@
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\postcss-loader\\src\\index.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\postcss-loader\\src\\index.js",
                 "options": {
                   "ident": "postcss",
-                  "sourceMap": true
+                  "sourceMap": false
                 }
               },
               {
-                "loader": "E:\\study\\my_os\\node_modules\\less-loader\\dist\\cjs.js",
+                "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\less-loader\\dist\\cjs.js",
                 "options": {
                   "javascriptEnabled": true,
                   "modifyVars": {
                     "@primary-color": "#2F54EB"
                   },
                   "localIdentName": "[local]--[hash:base64:5]",
-                  "source": true
+                  "source": false
                 }
               }
             ]
           },
           {
-            "loader": "E:\\study\\my_os\\node_modules\\file-loader\\dist\\cjs.js",
+            "loader": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\file-loader\\dist\\cjs.js",
             "exclude": [
               {},
               {},
@@ -427,25 +410,14 @@
   "plugins": [
     {
       "options": {
-        "template": "E:\\study\\my_os\\public\\index.html",
+        "template": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\public\\index.html",
         "templateContent": false,
         "filename": "index.html",
         "hash": false,
         "inject": true,
         "compile": true,
         "favicon": false,
-        "minify": {
-          "removeComments": true,
-          "collapseWhitespace": true,
-          "removeRedundantAttributes": true,
-          "useShortDoctype": true,
-          "removeEmptyAttributes": true,
-          "removeStyleLinkTypeAttributes": true,
-          "keepClosingSlash": true,
-          "minifyJS": true,
-          "minifyCSS": true,
-          "minifyURLs": true
-        },
+        "minify": false,
         "cache": true,
         "showErrors": true,
         "chunks": "all",
@@ -458,32 +430,35 @@
       "version": 4
     },
     {
-      "tests": [
-        {}
-      ]
-    },
-    {
       "replacements": {
-        "NODE_ENV": "production",
+        "NODE_ENV": "development",
         "PUBLIC_URL": ""
       }
     },
     {
-      "appPath": "E:\\study\\my_os"
+      "appPath": "C:\\Users\\cxgsy\\Documents\\work\\my_os"
     },
     {
       "definitions": {
         "process.env": {
-          "NODE_ENV": "\"production\"",
+          "NODE_ENV": "\"development\"",
           "PUBLIC_URL": "\"\""
         }
       }
     },
     {
-      "options": {
-        "filename": "static/css/[name].[contenthash:8].css",
-        "chunkFilename": "static/css/[name].[contenthash:8].chunk.css"
-      }
+      "options": {},
+      "fullBuildTimeout": 200,
+      "requestTimeout": 10000
+    },
+    {
+      "options": {},
+      "pathCache": {},
+      "fsOperations": 0,
+      "primed": false
+    },
+    {
+      "nodeModulesPath": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules"
     },
     {
       "opts": {
@@ -506,34 +481,13 @@
       }
     },
     {
-      "config": {
-        "chunks": [],
-        "exclude": [
-          {},
-          {}
-        ],
-        "excludeChunks": [],
-        "importsDirectory": "",
-        "importScripts": [],
-        "importWorkboxFrom": "cdn",
-        "precacheManifestFilename": "precache-manifest.[manifestHash].js",
-        "swDest": "service-worker.js",
-        "clientsClaim": true,
-        "navigateFallback": "/index.html",
-        "navigateFallbackBlacklist": [
-          {},
-          {}
-        ]
-      }
-    },
-    {
       "startAt": 0,
       "options": {
-        "typescript": "E:\\study\\my_os\\node_modules\\typescript\\lib\\typescript.js",
-        "async": false,
+        "typescript": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\typescript\\lib\\typescript.js",
+        "async": true,
         "useTypescriptIncrementalApi": true,
         "checkSyntacticErrors": true,
-        "tsconfig": "E:\\study\\my_os\\tsconfig.json",
+        "tsconfig": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\tsconfig.json",
         "reportFiles": [
           "**",
           "!**/*.json",
@@ -542,14 +496,14 @@
           "!**/src/setupProxy.*",
           "!**/src/setupTests.*"
         ],
-        "watch": "E:\\study\\my_os\\src",
+        "watch": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\src",
         "silent": true
       },
-      "tsconfig": "E:\\study\\my_os\\tsconfig.json",
+      "tsconfig": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\tsconfig.json",
       "compilerOptions": {},
       "tslintAutoFix": false,
       "watch": [
-        "E:\\study\\my_os\\src"
+        "C:\\Users\\cxgsy\\Documents\\work\\my_os\\src"
       ],
       "ignoreDiagnostics": [],
       "ignoreLints": [],
@@ -563,13 +517,13 @@
       ],
       "logger": {},
       "silent": true,
-      "async": false,
+      "async": true,
       "checkSyntacticErrors": true,
       "workersNumber": 1,
       "memoryLimit": 2048,
       "useColors": true,
       "colors": {
-        "level": 3,
+        "level": 0,
         "enabled": true
       },
       "useTypescriptIncrementalApi": true,
@@ -579,7 +533,7 @@
       "compilationDone": false,
       "diagnostics": [],
       "lints": [],
-      "typescriptPath": "E:\\study\\my_os\\node_modules\\typescript\\lib\\typescript.js",
+      "typescriptPath": "C:\\Users\\cxgsy\\Documents\\work\\my_os\\node_modules\\typescript\\lib\\typescript.js",
       "typescript": {
         "versionMajorMinor": "3.3",
         "version": "3.3.4000",
@@ -604,7 +558,7 @@
           "VeryAggressive": 3
         },
         "Debug": {
-          "currentAssertionLevel": 0,
+          "currentAssertionLevel": 1,
           "isDebugging": false
         },
         "performance": {
