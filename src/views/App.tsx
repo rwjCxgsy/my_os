@@ -13,6 +13,7 @@ import {getAppList} from './appList'
 import TopSearch from '../components/serach'
 import TopWeather from '../components/weather'
 import {createHashHistory} from 'history'
+import {withRouter} from 'react-router'
 
 const history = createHashHistory()
 
@@ -49,6 +50,10 @@ class App extends Component<Iporps, Istate> {
   }
   
   render() {
+    const isMobile = window.innerWidth > 750
+    if (isMobile) {
+      return <div>请在移动端打开</div>
+    }
     return (
       <div className={styles.App}>
         <div className={styles.header}>

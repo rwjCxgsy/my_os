@@ -523,7 +523,7 @@
       "memoryLimit": 2048,
       "useColors": true,
       "colors": {
-        "level": 0,
+        "level": 3,
         "enabled": true
       },
       "useTypescriptIncrementalApi": true,
