@@ -17,6 +17,7 @@ declare module 'classnames'
 declare module 'nprogress'
 declare module 'xgplayer-react'
 declare module 'vconsole'
+declare module 'lodash'
 declare const AMap: any
 
 declare module 'react-onsenui'
