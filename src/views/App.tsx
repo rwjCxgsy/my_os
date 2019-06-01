@@ -77,13 +77,18 @@ class App extends Component<Iporps, Istate> {
 
   componentDidMount () {
     history.listen(listener => {
-      console.log(listener.pathname)
+      console.log(listener)
+      if (listener.pathname === '/') {
+        for (const key in runApps) {
+          if (runApps.hasOwnProperty(key)) {
+            const element = runApps[key];
+            console.log(element)
+            ReactDOM.unmountComponentAtNode(element.ele)
+            element.ele.remove()
+          }
+        }
+      }
     })
-    // navigator.geolocation.getCurrentPosition(data => {
-    //   console.log(data)
-    // }, error => {
-    //   console.log(error)
-    // })
   }
 
   openLauncher (launcher: Ilauncher): void {
