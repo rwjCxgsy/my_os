@@ -127,8 +127,8 @@ module.exports = {
                 exclude: /(\/|\\)(node_modules)(\/|\\)/
             }),
         ]),
-        addTslintLoader(),
-        publicPath()
+        addTslintLoader()
+        // publicPath()
     ),
     devServer: overrideDevServer(
         server()
