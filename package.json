@@ -22,7 +22,7 @@
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "lint-staged": "^8.1.5",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "nprogress": "^0.2.0",
     "onsenui": "^2.10.8",
     "postcss-aspect-ratio-mini": "^1.0.1",
